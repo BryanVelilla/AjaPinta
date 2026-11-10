@@ -12,6 +12,7 @@ import { Footer } from './components/layout/Footer';
 import { CartDrawer } from './components/cart/CartDrawer';
 import { ProductDetailModal } from './components/product/ProductDetailModal';
 import { ContactModal } from './components/contact/ContactModal';
+import { PaintClickEffect } from './components/ui/PaintClickEffect';
 import { Product } from './types';
 import { PRODUCTS } from './data/products';
 
@@ -88,6 +89,9 @@ export const App: React.FC = () => {
 
       {/* Footer */}
       <Footer onOpenContact={handleOpenCorporate} />
+
+      {/* Click Visual Effect */}
+      <PaintClickEffect />
 
       {/* Modals & Slide-overs */}
       <CartDrawer />
