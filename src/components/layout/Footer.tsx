@@ -19,7 +19,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
           {/* Brand Info */}
           <div className="md:col-span-2 flex flex-col gap-space-md">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-surface-container-lowest p-2 border-2 border-[#001f25] shadow-[2px_2px_0px_#001f25] flex items-center justify-center">
+              <div className="w-12 h-12 rounded-full bg-surface-container-lowest p-2 border border-outline-variant/50 shadow-[2px_2px_0px_#ffdcc5] flex items-center justify-center">
                 <img
                   alt="Logo ajá! pinta"
                   className="w-full h-full object-contain"
@@ -40,7 +40,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
               Figuras artesanales en yeso y cerámica listas para pintar, inspiradas en las raíces folclóricas, la calidez tropical y la rica cultura caribeña de Sucre. Un lienzo tridimensional para crear en familia.
             </p>
 
-            <div className="inline-flex items-center gap-space-xs bg-surface-container px-space-md py-space-xs rounded-full shadow-[2px_2px_0px_#001f25] border border-[#001f25] w-fit">
+            <div className="inline-flex items-center gap-space-xs bg-surface-container px-space-md py-space-xs rounded-full shadow-[2px_2px_0px_#ffdcc5] border border-outline-variant/40 w-fit">
               <span className="material-symbols-outlined text-secondary text-base">palette</span>
               <span className="text-xs font-bold text-on-surface">
                 Hecho a mano en Sucre con puro corazón
@@ -116,19 +116,19 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
 
             <div className="flex items-center gap-2 pt-2">
               <span
-                className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant border border-[#001f25] shadow-[1px_1px_0px_#001f25] cursor-pointer hover:bg-secondary-fixed transition-colors"
+                className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant border border-outline-variant/50 shadow-[1px_1px_0px_#73d1ff] cursor-pointer hover:bg-secondary-fixed transition-colors"
                 title="Red Caribe"
               >
                 <span className="material-symbols-outlined text-base">public</span>
               </span>
               <span
-                className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant border border-[#001f25] shadow-[1px_1px_0px_#001f25] cursor-pointer hover:bg-secondary-fixed transition-colors"
+                className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant border border-outline-variant/50 shadow-[1px_1px_0px_#ffbe08] cursor-pointer hover:bg-secondary-fixed transition-colors"
                 title="Talleres de arte"
               >
                 <span className="material-symbols-outlined text-base">brush</span>
               </span>
               <span
-                className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant border border-[#001f25] shadow-[1px_1px_0px_#001f25] cursor-pointer hover:bg-secondary-fixed transition-colors"
+                className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant border border-outline-variant/50 shadow-[1px_1px_0px_#ff8da1] cursor-pointer hover:bg-secondary-fixed transition-colors"
                 title="Pasion artesanal"
               >
                 <span className="material-symbols-outlined text-base">favorite</span>

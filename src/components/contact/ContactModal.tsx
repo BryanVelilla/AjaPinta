@@ -42,11 +42,11 @@ export const ContactModal: React.FC<ContactModalProps> = ({
         onClick={onClose}
       />
 
-      <div className="relative bg-surface-container-lowest rounded-[32px_16px_36px_18px] border-4 border-[#001f25] shadow-[8px_8px_0px_#001f25] max-w-2xl w-full p-6 md:p-8 z-10 animate-fadeIn">
+      <div className="relative bg-surface-container-lowest rounded-[32px_16px_36px_18px] border-4 border-[#001f25] shadow-[8px_8px_0px_#c1e8ff] max-w-2xl w-full p-6 md:p-8 z-10 animate-fadeIn">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-9 h-9 rounded-full bg-surface-container hover:bg-secondary-fixed text-on-surface flex items-center justify-center border border-[#001f25] shadow-[2px_2px_0px_#001f25] transition-transform hover:scale-105"
+          className="absolute top-4 right-4 w-9 h-9 rounded-full bg-surface-container hover:bg-secondary-fixed text-on-surface flex items-center justify-center border border-outline-variant/60 shadow-[2px_2px_0px_#ffdcc5] transition-transform hover:scale-105"
         >
           <span className="material-symbols-outlined text-lg">close</span>
         </button>
@@ -55,9 +55,9 @@ export const ContactModal: React.FC<ContactModalProps> = ({
         <div className="flex items-center gap-2 mb-6 border-b-2 border-surface-container-high pb-3">
           <button
             onClick={() => setTab('contact')}
-            className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold border-2 border-[#001f25] transition-all ${
+            className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold border border-secondary-container transition-all ${
               tab === 'contact'
-                ? 'bg-secondary-container text-white shadow-[2px_2px_0px_#001f25]'
+                ? 'bg-secondary-container text-white shadow-[2px_2px_0px_#ffbe08]'
                 : 'bg-surface hover:bg-surface-container'
             }`}
           >
@@ -65,9 +65,9 @@ export const ContactModal: React.FC<ContactModalProps> = ({
           </button>
           <button
             onClick={() => setTab('story')}
-            className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold border-2 border-[#001f25] transition-all ${
+            className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold border border-tertiary transition-all ${
               tab === 'story'
-                ? 'bg-tertiary text-white shadow-[2px_2px_0px_#001f25]'
+                ? 'bg-tertiary text-white shadow-[2px_2px_0px_#84f5f0]'
                 : 'bg-surface hover:bg-surface-container'
             }`}
           >
@@ -148,7 +148,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
             <button
               onClick={handleSendInquiry}
-              className="mt-2 w-full py-3 rounded-full bg-[#25D366] text-white font-headline text-sm font-bold shadow-[3px_3px_0px_#001f25] border-2 border-[#001f25] hover:bg-[#20ba59] active:translate-x-[1px] active:translate-y-[1px] flex items-center justify-center gap-2"
+              className="mt-2 w-full py-3 rounded-full bg-[#25D366] text-white font-headline text-sm font-bold shadow-[3px_3px_0px_#86efac] border-2 border-[#001f25] hover:bg-[#20ba59] active:translate-x-[1px] active:translate-y-[1px] flex items-center justify-center gap-2"
             >
               <span className="material-symbols-outlined text-lg">chat</span>
               <span>Cotizar directamente por WhatsApp</span>

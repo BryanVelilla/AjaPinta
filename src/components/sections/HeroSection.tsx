@@ -61,7 +61,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <div className="flex flex-wrap items-center gap-space-md pt-space-xs">
               <button
                 onClick={onExploreClick}
-                className="inline-flex items-center justify-center gap-space-sm bg-secondary-container text-white font-headline text-base sm:text-lg font-bold px-space-xl py-space-md rounded-full shadow-[4px_4px_0px_#001f25] border-2 border-[#001f25] hover:bg-secondary hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#001f25] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_#001f25] transition-all"
+                className="inline-flex items-center justify-center gap-space-sm bg-secondary-container text-white font-headline text-base sm:text-lg font-bold px-space-xl py-space-md rounded-full shadow-[4px_4px_0px_#ffbe08] border-2 border-[#ff8500] hover:bg-secondary hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#ffbe08] active:translate-x-0.5 active:translate-y-0.5 transition-all"
               >
                 <span className="material-symbols-outlined">brush</span>
                 <span>Explorar el catálogo</span>
@@ -70,7 +70,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
             {/* Micro Highlights */}
             <div className="grid grid-cols-3 gap-space-sm pt-space-md max-w-lg">
-              <div className="flex flex-col bg-secondary-fixed p-space-sm rounded-[16px_8px_18px_10px] shadow-[2px_2px_0px_#001f25] border-2 border-[#001f25]">
+              <div className="flex flex-col bg-secondary-fixed p-space-sm rounded-[16px_8px_18px_10px] shadow-[3px_3px_0px_#ffb783] border-2 border-secondary/30">
                 <span className="font-headline text-lg sm:text-xl font-bold text-secondary leading-none">
                   6 Colores
                 </span>
@@ -79,7 +79,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 </span>
               </div>
 
-              <div className="flex flex-col bg-primary-fixed p-space-sm rounded-[8px_16px_10px_18px] shadow-[2px_2px_0px_#001f25] border-2 border-[#001f25]">
+              <div className="flex flex-col bg-primary-fixed p-space-sm rounded-[8px_16px_10px_18px] shadow-[3px_3px_0px_#73d1ff] border-2 border-primary/30">
                 <span className="font-headline text-lg sm:text-xl font-bold text-primary leading-none">
                   2 Pinceles
                 </span>
@@ -88,7 +88,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 </span>
               </div>
 
-              <div className="flex flex-col bg-tertiary-fixed p-space-sm rounded-[14px_10px_16px_8px] shadow-[2px_2px_0px_#001f25] border-2 border-[#001f25]">
+              <div className="flex flex-col bg-tertiary-fixed p-space-sm rounded-[14px_10px_16px_8px] shadow-[3px_3px_0px_#84f5f0] border-2 border-tertiary/30">
                 <span className="font-headline text-lg sm:text-xl font-bold text-tertiary leading-none">
                   Guía Sabanera
                 </span>
@@ -109,7 +109,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               {/* Card 1: Sombrero Vueltiao (Interactive click) */}
               <div
                 onClick={onOpenSombrero}
-                className="cursor-pointer w-11/12 bg-surface-container-lowest p-space-xs rounded-[28px_14px_30px_16px] shadow-[6px_6px_0px_#001f25] border-3 border-[#001f25] transform -rotate-3 hover:rotate-0 hover:scale-[1.02] transition-all duration-300 group"
+                className="cursor-pointer w-11/12 bg-surface-container-lowest p-space-xs rounded-[28px_14px_30px_16px] shadow-[6px_6px_0px_#c1e8ff] border-3 border-[#001f25] transform -rotate-3 hover:rotate-0 hover:scale-[1.02] transition-all duration-300 group"
               >
                 <div className="relative overflow-hidden rounded-[24px_10px_26px_12px] bg-surface-container-highest">
                   <img
@@ -118,7 +118,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDezoS0ePDAAdtj1eVEF3u9fW0KRg_VYN6OB-cxK4mAxKHixP7-MNoIpa_OQakfFKwaxEMDM72hiK4vXhmeZCltnia-OGL_vWUp_nyBkQySrB6Ea2f7fVwraZd6lRmQJRPD-qPbnw_DbIeGlZvEAMzwOZ_GX-fHT97m7erE_Tnet40SLiEPsYsLj-R3VQwlPYGk6hg6vrooX4k0nqlv6rt0gbiLCXeJf_EBS-AM9U"
                   />
                   {/* Sticker Top Photo */}
-                  <div className="absolute top-2 left-2 bg-secondary-container text-white px-3 py-1 rounded-full shadow-[2px_2px_0px_#001f25] border border-[#001f25] flex items-center gap-1 text-xs font-bold">
+                  <div className="absolute top-2 left-2 bg-secondary-container text-white px-3 py-1 rounded-full shadow-[2px_2px_0px_#ffbe08] border border-secondary-container flex items-center gap-1 text-xs font-bold">
                     <span className="material-symbols-outlined text-sm">auto_fix_high</span>
                     <span>¡Pinturas incluidas!</span>
                   </div>
@@ -128,7 +128,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               {/* Card 2: Casita Bahareque (Interactive click) */}
               <div
                 onClick={onOpenCasita}
-                className="cursor-pointer w-9/12 bg-surface-container-lowest p-space-xs rounded-[16px_28px_14px_26px] shadow-[5px_5px_0px_#001f25] border-3 border-[#001f25] -mt-16 ml-20 transform rotate-4 hover:rotate-1 hover:scale-[1.03] transition-all duration-300 z-20 group"
+                className="cursor-pointer w-9/12 bg-surface-container-lowest p-space-xs rounded-[16px_28px_14px_26px] shadow-[5px_5px_0px_#84f5f0] border-3 border-[#001f25] -mt-16 ml-20 transform rotate-4 hover:rotate-1 hover:scale-[1.03] transition-all duration-300 z-20 group"
               >
                 <div className="relative overflow-hidden rounded-[12px_24px_10px_22px] bg-tertiary-fixed">
                   <img
@@ -137,7 +137,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHHLwJBDK6c17466MVhYCjyLOZ-TrWbK9SSYvjFTxgpR9yuXEoipraFzABOQUbG0_uLdt37dNc0vlD3VN-mA2BdEPQVBrt2IpbW_jCfZ9s636bwOg-jAIjVaSI_dn9v3St60a-q_7wruMiRP7hPDyWUpekEu3KIsVH2qeHkkm4FubcaqvpnD_g7vbu0S17C84t8HguokC87_6gZDoDW9GWWgyndulL6kqvY39MKT0"
                   />
                   {/* Corner Badge */}
-                  <div className="absolute bottom-2 right-2 bg-primary text-white px-2.5 py-0.5 rounded-full shadow-[2px_2px_0px_#001f25] border border-[#001f25] flex items-center gap-1 text-[11px] font-bold">
+                  <div className="absolute bottom-2 right-2 bg-primary text-white px-2.5 py-0.5 rounded-full shadow-[2px_2px_0px_#73d1ff] border border-primary flex items-center gap-1 text-[11px] font-bold">
                     <span className="material-symbols-outlined text-xs">favorite</span>
                     <span>Edición Sincelejo</span>
                   </div>
@@ -145,7 +145,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </div>
 
               {/* Floating Neo-Brutalist Sticker */}
-              <div className="absolute -bottom-4 -left-2 z-30 bg-[#ff3640] text-white font-headline text-sm md:text-base font-bold px-4 py-1.5 rounded-[18px_6px_16px_8px] shadow-[4px_4px_0px_#001f25] border-2 border-[#001f25] transform -rotate-6 animate-float">
+              <div className="absolute -bottom-4 -left-2 z-30 bg-[#ff3640] text-white font-headline text-sm md:text-base font-bold px-4 py-1.5 rounded-[18px_6px_16px_8px] shadow-[4px_4px_0px_#ff8da1] border-2 border-[#ff3640] transform -rotate-6 animate-float">
                 ✨ ¡Listo para pintar!
               </div>
             </div>

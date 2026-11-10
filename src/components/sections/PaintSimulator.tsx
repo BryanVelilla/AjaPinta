@@ -72,7 +72,7 @@ export const PaintSimulator: React.FC = () => {
 
       <div className="max-w-[1280px] mx-auto px-margin relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-8">
-          <div className="inline-flex items-center gap-2 bg-secondary-fixed text-on-secondary-fixed px-4 py-1 rounded-full shadow-[2px_2px_0px_#001f25] border border-[#001f25] text-xs font-bold uppercase tracking-wider mb-2">
+          <div className="inline-flex items-center gap-2 bg-secondary-fixed text-on-secondary-fixed px-4 py-1 rounded-full shadow-[2px_2px_0px_#ffb783] border border-secondary/30 text-xs font-bold uppercase tracking-wider mb-2">
             <span className="material-symbols-outlined text-sm">palette</span>
             <span>Experiencia Interactiva Virtual</span>
           </div>
@@ -84,7 +84,7 @@ export const PaintSimulator: React.FC = () => {
           </p>
         </div>
 
-        <div className="bg-surface-container-lowest rounded-[32px_16px_36px_18px] p-6 md:p-10 border-4 border-[#001f25] shadow-[7px_7px_0px_#001f25] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="bg-surface-container-lowest rounded-[32px_16px_36px_18px] p-6 md:p-10 border-4 border-[#001f25] shadow-[7px_7px_0px_#c1e8ff] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Interactive SVG Canvas */}
           <div className="lg:col-span-7 flex flex-col items-center">
             <div className="relative w-full max-w-md aspect-[4/3] bg-surface rounded-3xl border-2 border-[#001f25] p-6 flex items-center justify-center shadow-inner overflow-hidden">
@@ -170,14 +170,14 @@ export const PaintSimulator: React.FC = () => {
             <div className="flex gap-2 mt-4">
               <button
                 onClick={handleRandomize}
-                className="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary-fixed text-xs font-bold border border-[#001f25] shadow-[2px_2px_0px_#001f25] flex items-center gap-1.5"
+                className="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary-fixed text-xs font-bold border border-outline-variant/60 shadow-[2px_2px_0px_#ffdcc5] flex items-center gap-1.5"
               >
                 <span className="material-symbols-outlined text-sm text-secondary">casino</span>
                 <span>Colores al azar</span>
               </button>
               <button
                 onClick={handleReset}
-                className="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high text-xs font-bold border border-[#001f25] shadow-[2px_2px_0px_#001f25] flex items-center gap-1.5"
+                className="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high text-xs font-bold border border-outline-variant/60 shadow-[2px_2px_0px_#c1e8ff] flex items-center gap-1.5"
               >
                 <span className="material-symbols-outlined text-sm">restart_alt</span>
                 <span>Lienzo blanco (Yeso)</span>
@@ -206,12 +206,12 @@ export const PaintSimulator: React.FC = () => {
                     onClick={() => setSelectedColor(swatch.color)}
                     className={`flex flex-col items-center gap-1 p-2 rounded-xl border-2 transition-all ${
                       isSelected
-                        ? 'border-[#001f25] bg-secondary-fixed/50 scale-105 shadow-[3px_3px_0px_#001f25]'
-                        : 'border-[#001f25]/20 bg-surface hover:border-[#001f25]'
+                        ? 'border-[#ff8500] bg-secondary-fixed/50 scale-105 shadow-[3px_3px_0px_#ffbe08]'
+                        : 'border-outline-variant/40 bg-surface hover:border-[#ff8500]'
                     }`}
                   >
                     <span
-                      className="w-8 h-8 rounded-full border-2 border-[#001f25] shadow-[1px_1px_0px_#001f25]"
+                      className="w-8 h-8 rounded-full border border-black/20 shadow-[1px_1px_0px_#ffdcc5]"
                       style={{ backgroundColor: swatch.color }}
                     />
                     <span className="text-[10px] font-bold text-on-surface text-center leading-tight truncate w-full">
@@ -223,7 +223,7 @@ export const PaintSimulator: React.FC = () => {
             </div>
 
             {/* Step 2 summary card */}
-            <div className="bg-surface p-4 rounded-2xl border-2 border-[#001f25] shadow-[3px_3px_0px_#001f25] flex flex-col gap-2">
+            <div className="bg-surface p-4 rounded-2xl border-2 border-outline-variant/60 shadow-[3px_3px_0px_#ffdcc5] flex flex-col gap-2">
               <div className="flex items-center justify-between">
                 <div>
                   <span className="text-xs font-bold text-tertiary">Kit listo para enviar:</span>
@@ -240,7 +240,7 @@ export const PaintSimulator: React.FC = () => {
               </p>
               <button
                 onClick={() => addToCart(sombreroProduct, 1, false)}
-                className="mt-2 w-full py-2.5 px-4 rounded-full bg-secondary-container text-white font-headline text-sm font-bold shadow-[3px_3px_0px_#001f25] hover:bg-secondary active:translate-x-[1px] active:translate-y-[1px] transition-all flex items-center justify-center gap-2"
+                className="mt-2 w-full py-2.5 px-4 rounded-full bg-secondary-container text-white font-headline text-sm font-bold shadow-[3px_3px_0px_#ffbe08] hover:bg-secondary active:translate-x-[1px] active:translate-y-[1px] transition-all flex items-center justify-center gap-2"
               >
                 <span className="material-symbols-outlined text-lg">brush</span>
                 <span>¡Pedir este kit para pintar en casa!</span>

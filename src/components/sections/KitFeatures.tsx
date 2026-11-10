@@ -39,9 +39,9 @@ export const KitFeatures: React.FC = () => {
           {features.map((feature, idx) => (
             <div
               key={idx}
-              className="flex items-center gap-space-sm bg-surface-container-lowest p-space-md rounded-2xl shadow-[3px_3px_0px_#001f25] border-2 border-[#001f25] hover:-translate-y-1 transition-transform"
+              className="flex items-center gap-space-sm bg-surface-container-lowest p-space-md rounded-2xl shadow-[3px_3px_0px_#ffdcc5] border border-outline-variant/40 hover:-translate-y-1 transition-transform"
             >
-              <div className={`w-12 h-12 rounded-xl ${feature.bgColor} flex items-center justify-center border border-[#001f25] flex-shrink-0`}>
+              <div className={`w-12 h-12 rounded-xl ${feature.bgColor} flex items-center justify-center border border-black/10 flex-shrink-0`}>
                 <span className={`material-symbols-outlined text-2xl ${feature.color}`}>
                   {feature.icon}
                 </span>

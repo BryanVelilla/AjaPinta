@@ -81,7 +81,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
         </div>
 
         {/* Desktop Navigation pill */}
-        <nav className="hidden md:flex items-center gap-1.5 bg-surface-container-lowest px-2 py-1.5 rounded-full shadow-[2px_2px_0px_#001f25] border border-[#001f25]/20">
+        <nav className="hidden md:flex items-center gap-1.5 bg-surface-container-lowest px-2 py-1.5 rounded-full shadow-[2px_2px_0px_#ffdcc5] border border-outline-variant/40">
           <button
             onClick={() => scrollToSection('inicio')}
             className={`px-4 py-1.5 text-sm font-bold rounded-full transition-all ${
@@ -106,7 +106,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
             onClick={() => scrollToSection('simulador')}
             className={`px-4 py-1.5 text-sm font-bold rounded-full transition-all flex items-center gap-1 ${
               activeSection === 'simulador'
-                ? 'bg-tertiary text-white shadow-[2px_2px_0px_#001f25]'
+                ? 'bg-tertiary text-white shadow-[2px_2px_0px_#84f5f0]'
                 : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low'
             }`}
           >
@@ -136,12 +136,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
           {/* Cart Button */}
           <button
             onClick={() => setIsCartOpen(true)}
-            className="relative p-2.5 rounded-full bg-surface-container-lowest text-on-surface border border-[#001f25] shadow-[2px_2px_0px_#001f25] hover:bg-surface-container hover:scale-105 active:scale-95 transition-all"
+            className="relative p-2.5 rounded-full bg-surface-container-lowest text-on-surface border border-outline-variant/60 shadow-[2px_2px_0px_#73d1ff] hover:bg-surface-container hover:scale-105 active:scale-95 transition-all"
             aria-label="Abrir carrito"
           >
             <span className="material-symbols-outlined text-xl">shopping_cart</span>
             {totalItems > 0 && (
-              <span className="absolute -top-1.5 -right-1.5 bg-brand-red text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-surface shadow-[1px_1px_0px_#001f25] animate-bounce">
+              <span className="absolute -top-1.5 -right-1.5 bg-brand-red text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-surface shadow-[1px_1px_0px_#ff8da1] animate-bounce">
                 {totalItems}
               </span>
             )}
@@ -150,7 +150,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
           {/* Quick CTA */}
           <button
             onClick={() => scrollToSection('tienda')}
-            className="hidden sm:inline-flex items-center gap-1.5 font-bold text-sm bg-secondary-container text-white px-5 py-2.5 rounded-full shadow-[3px_3px_0px_#001f25] hover:bg-secondary active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#001f25] transition-all"
+            className="hidden sm:inline-flex items-center gap-1.5 font-bold text-sm bg-secondary-container text-white px-5 py-2.5 rounded-full shadow-[3px_3px_0px_#ffbe08] hover:bg-secondary active:translate-x-[1px] active:translate-y-[1px] transition-all"
           >
             <span className="material-symbols-outlined text-lg">brush</span>
             <span>Ver figuras</span>
@@ -159,7 +159,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
           {/* Mobile menu trigger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-full bg-surface-container-lowest text-on-surface border border-[#001f25] shadow-[2px_2px_0px_#001f25]"
+            className="md:hidden p-2 rounded-full bg-surface-container-lowest text-on-surface border border-outline-variant/60 shadow-[2px_2px_0px_#73d1ff]"
             aria-label="Abrir menú"
           >
             <span className="material-symbols-outlined text-2xl">

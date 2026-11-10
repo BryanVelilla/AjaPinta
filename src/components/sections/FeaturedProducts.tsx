@@ -34,7 +34,7 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ onSelectProd
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-space-md pb-6">
           <div className="flex flex-col gap-space-xs max-w-2xl">
-            <div className="inline-flex items-center gap-space-xs bg-tertiary-fixed text-on-tertiary-fixed px-space-md py-space-xs rounded-full shadow-[2px_2px_0px_#001f25] border border-[#001f25] w-fit">
+            <div className="inline-flex items-center gap-space-xs bg-tertiary-fixed text-on-tertiary-fixed px-space-md py-space-xs rounded-full shadow-[2px_2px_0px_#84f5f0] border border-tertiary-container/30 w-fit">
               <span className="material-symbols-outlined text-sm">storefront</span>
               <span className="text-xs uppercase font-bold tracking-wider">Catálogo Hecho a Mano</span>
             </div>
@@ -53,7 +53,7 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ onSelectProd
               placeholder="Buscar figura o kit..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-full border-2 border-[#001f25] bg-surface text-sm font-medium shadow-[2px_2px_0px_#001f25] focus:outline-none focus:border-secondary"
+              className="w-full pl-10 pr-4 py-2.5 rounded-full border-2 border-outline-variant/60 bg-surface text-sm font-medium shadow-[2px_2px_0px_#73d1ff] focus:outline-none focus:border-secondary"
             />
             <span className="material-symbols-outlined text-gray-500 absolute left-3 top-3 text-lg">
               search
@@ -69,10 +69,10 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ onSelectProd
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap border-2 border-[#001f25] transition-all ${
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap border-2 border-[#001f25]/20 transition-all ${
                   isActive
-                    ? 'bg-secondary-container text-white shadow-[3px_3px_0px_#001f25] -translate-y-0.5'
-                    : 'bg-surface text-on-surface hover:bg-surface-container shadow-[1px_1px_0px_#001f25]'
+                    ? 'bg-secondary-container text-white shadow-[3px_3px_0px_#ffbe08] -translate-y-0.5'
+                    : 'bg-surface text-on-surface hover:bg-surface-container shadow-[1px_1px_0px_#73d1ff]'
                 }`}
               >
                 <span className="material-symbols-outlined text-base">{cat.icon}</span>
@@ -94,18 +94,18 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ onSelectProd
             return (
               <div
                 key={product.id}
-                className={`group ${cardBg} ${radiusStyle} p-space-md md:p-space-lg shadow-[5px_5px_0px_#001f25] border-3 border-[#001f25] flex flex-col md:flex-row gap-space-md items-center transform transition-all duration-300 hover:shadow-[7px_7px_0px_#001f25] hover:-translate-x-0.5 hover:-translate-y-0.5`}
+                className={`group ${cardBg} ${radiusStyle} p-space-md md:p-space-lg shadow-[5px_5px_0px_#ffdcc5] border-3 border-[#001f25] flex flex-col md:flex-row gap-space-md items-center transform transition-all duration-300 hover:shadow-[7px_7px_0px_#ffdcc5] hover:-translate-x-0.5 hover:-translate-y-0.5`}
               >
                 {/* Product Photo */}
                 <div className="w-full md:w-1/2 relative cursor-pointer" onClick={() => onSelectProduct(product)}>
-                  <div className="relative overflow-hidden rounded-[22px_12px_24px_10px] bg-secondary-fixed shadow-[3px_3px_0px_#001f25] border-2 border-[#001f25]">
+                  <div className="relative overflow-hidden rounded-[22px_12px_24px_10px] bg-secondary-fixed shadow-[3px_3px_0px_#ffdcc5] border-2 border-[#001f25]">
                     <img
                       alt={product.name}
                       src={product.image}
                       className="w-full h-64 md:h-72 object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     />
                     {product.badge && (
-                      <span className={`absolute top-space-xs left-space-xs ${product.badgeColor || 'bg-secondary-container'} text-white text-xs font-bold px-space-sm py-space-xs rounded-full shadow-[2px_2px_0px_#001f25] border border-[#001f25] -rotate-2`}>
+                      <span className={`absolute top-space-xs left-space-xs ${product.badgeColor || 'bg-secondary-container'} text-white text-xs font-bold px-space-sm py-space-xs rounded-full shadow-[2px_2px_0px_#ffbe08] border border-white/40 -rotate-2`}>
                         {product.badge}
                       </span>
                     )}
@@ -138,7 +138,7 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ onSelectProd
                   </div>
 
                   {/* Included Items Pill */}
-                  <div className="bg-surface-container-lowest p-2 rounded-xl shadow-[2px_2px_0px_#001f25] border border-[#001f25] flex items-center justify-between text-xs font-bold text-on-surface">
+                  <div className="bg-surface-container-lowest p-2 rounded-xl shadow-[2px_2px_0px_#ffdcc5] border border-outline-variant/50 flex items-center justify-between text-xs font-bold text-on-surface">
                     <span className="flex items-center gap-1">
                       <span className="material-symbols-outlined text-secondary text-sm">brush</span>
                       2 Pinceles
@@ -170,7 +170,7 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ onSelectProd
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => onSelectProduct(product)}
-                        className="inline-flex items-center justify-center gap-1 bg-surface-container-lowest text-on-surface text-xs font-bold px-3.5 py-2 rounded-full border-2 border-[#001f25] shadow-[2px_2px_0px_#001f25] hover:bg-surface-container active:scale-95 transition-all"
+                        className="inline-flex items-center justify-center gap-1 bg-surface-container-lowest text-on-surface text-xs font-bold px-3.5 py-2 rounded-full border border-outline-variant/60 shadow-[2px_2px_0px_#73d1ff] hover:bg-surface-container active:scale-95 transition-all"
                         title="Ver detalles completos"
                       >
                         <span>Detalles</span>
@@ -179,7 +179,7 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ onSelectProd
 
                       <button
                         onClick={() => addToCart(product, 1, false)}
-                        className="inline-flex items-center justify-center gap-1 bg-secondary-container text-white text-xs font-bold px-3.5 py-2 rounded-full border-2 border-[#001f25] shadow-[3px_3px_0px_#001f25] hover:bg-secondary active:scale-95 transition-all"
+                        className="inline-flex items-center justify-center gap-1 bg-secondary-container text-white text-xs font-bold px-3.5 py-2 rounded-full border border-secondary-container shadow-[3px_3px_0px_#ffbe08] hover:bg-secondary active:scale-95 transition-all"
                         title="Añadir a la canasta"
                       >
                         <span className="material-symbols-outlined text-sm">add_shopping_cart</span>

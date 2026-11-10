@@ -6,6 +6,7 @@ import { FeaturedProducts } from './components/sections/FeaturedProducts';
 import { PaintSimulator } from './components/sections/PaintSimulator';
 import { CultureEssence } from './components/sections/CultureEssence';
 import { KitFeatures } from './components/sections/KitFeatures';
+import { FAQSection } from './components/sections/FAQSection';
 import { FinalCTA } from './components/sections/FinalCTA';
 import { Footer } from './components/layout/Footer';
 import { CartDrawer } from './components/cart/CartDrawer';
@@ -75,7 +76,10 @@ export const App: React.FC = () => {
         {/* 6. Complete Kit Features */}
         <KitFeatures />
 
-        {/* 7. Final Call to Action */}
+        {/* 7. Frequently Asked Questions */}
+        <FAQSection />
+
+        {/* 8. Final Call to Action */}
         <FinalCTA
           onExploreClick={scrollToCatalog}
           onCorporateClick={handleOpenCorporate}

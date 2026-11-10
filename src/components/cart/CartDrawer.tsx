@@ -45,13 +45,13 @@ export const CartDrawer: React.FC = () => {
             <div className="flex items-center gap-2">
               <span className="material-symbols-outlined text-secondary text-2xl">shopping_cart</span>
               <h2 className="font-headline text-xl font-bold text-on-surface">Tu Canasta Caribeña</h2>
-              <span className="text-xs font-bold bg-secondary-container text-white px-2 py-0.5 rounded-full shadow-[1px_1px_0px_#001f25]">
+              <span className="text-xs font-bold bg-secondary-container text-white px-2 py-0.5 rounded-full shadow-[1px_1px_0px_#ffbe08]">
                 {items.length} {items.length === 1 ? 'kit' : 'kits'}
               </span>
             </div>
             <button
               onClick={() => setIsCartOpen(false)}
-              className="w-8 h-8 rounded-full bg-surface-container hover:bg-secondary-fixed text-on-surface flex items-center justify-center border border-[#001f25] transition-colors"
+              className="w-8 h-8 rounded-full bg-surface-container hover:bg-secondary-fixed text-on-surface flex items-center justify-center border border-outline-variant/60 transition-colors"
             >
               <span className="material-symbols-outlined text-xl">close</span>
             </button>
@@ -80,7 +80,7 @@ export const CartDrawer: React.FC = () => {
           <div className="flex-1 overflow-y-auto p-space-md flex flex-col gap-3">
             {items.length === 0 ? (
               <div className="flex-1 flex flex-col items-center justify-center text-center p-6 text-on-surface-variant">
-                <div className="w-20 h-20 rounded-full bg-surface-container-low flex items-center justify-center mb-3 shadow-[3px_3px_0px_#001f25] border border-[#001f25]">
+                <div className="w-20 h-20 rounded-full bg-surface-container-low flex items-center justify-center mb-3 shadow-[3px_3px_0px_#ffdcc5] border border-[#001f25]">
                   <span className="material-symbols-outlined text-4xl text-secondary">palette</span>
                 </div>
                 <h3 className="font-headline font-bold text-lg text-on-surface mb-1">
@@ -91,7 +91,7 @@ export const CartDrawer: React.FC = () => {
                 </p>
                 <button
                   onClick={() => setIsCartOpen(false)}
-                  className="font-bold text-sm bg-secondary-container text-white px-5 py-2 rounded-full shadow-[2px_2px_0px_#001f25] hover:bg-secondary"
+                  className="font-bold text-sm bg-secondary-container text-white px-5 py-2 rounded-full shadow-[2px_2px_0px_#ffbe08] hover:bg-secondary"
                 >
                   Ver figuras disponibles
                 </button>
@@ -102,7 +102,7 @@ export const CartDrawer: React.FC = () => {
                 return (
                   <div
                     key={item.product.id}
-                    className="p-3 bg-surface rounded-2xl border-2 border-[#001f25] shadow-[3px_3px_0px_#001f25] flex gap-3 relative"
+                    className="p-3 bg-surface rounded-2xl border border-outline-variant/60 shadow-[3px_3px_0px_#ffdcc5] flex gap-3 relative"
                   >
                     <img
                       src={item.product.image}
@@ -226,7 +226,7 @@ export const CartDrawer: React.FC = () => {
               {/* Checkout WhatsApp Button */}
               <button
                 onClick={handleCheckout}
-                className="w-full py-3 px-4 rounded-full bg-[#25D366] text-white font-headline text-base font-bold shadow-[3px_3px_0px_#001f25] hover:bg-[#20ba59] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#001f25] transition-all flex items-center justify-center gap-2"
+                className="w-full py-3 px-4 rounded-full bg-[#25D366] text-white font-headline text-base font-bold shadow-[3px_3px_0px_#86efac] hover:bg-[#20ba59] active:translate-x-[1px] active:translate-y-[1px] transition-all flex items-center justify-center gap-2"
               >
                 <span className="material-symbols-outlined text-xl">chat</span>
                 <span>Pedir por WhatsApp</span>

@@ -17,7 +17,7 @@ export const CultureEssence: React.FC<CultureEssenceProps> = ({ onStoryClick }) 
       <div className="max-w-[1280px] mx-auto px-margin relative z-10">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto flex flex-col items-center gap-space-xs pb-space-xl">
-          <span className="inline-flex items-center gap-space-xs bg-surface-container px-space-md py-space-xs rounded-full shadow-[2px_2px_0px_#001f25] border border-[#001f25] text-xs text-secondary font-bold uppercase tracking-wider">
+          <span className="inline-flex items-center gap-space-xs bg-surface-container px-space-md py-space-xs rounded-full shadow-[2px_2px_0px_#ffdcc5] border border-outline-variant/40 text-xs text-secondary font-bold uppercase tracking-wider">
             <span className="material-symbols-outlined text-sm">local_florist</span>
             Nuestra Esencia Caribeña
           </span>
@@ -32,9 +32,9 @@ export const CultureEssence: React.FC<CultureEssenceProps> = ({ onStoryClick }) 
         {/* 3 Pillars Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
           {/* Card 1: Sucre Caribbean Charm */}
-          <div className="relative bg-surface-container-lowest p-space-lg rounded-[24px_12px_26px_10px] shadow-[4px_4px_0px_#001f25] border-3 border-[#001f25] flex flex-col justify-between gap-space-md transform hover:-translate-y-1.5 transition-transform duration-300">
+          <div className="relative bg-surface-container-lowest p-space-lg rounded-[24px_12px_26px_10px] shadow-[4px_4px_0px_#ffdcc5] border-2 border-outline-variant/40 flex flex-col justify-between gap-space-md transform hover:-translate-y-1.5 transition-transform duration-300">
             <div className="flex flex-col gap-space-sm">
-              <div className="w-14 h-14 rounded-full bg-secondary-fixed flex items-center justify-center shadow-[3px_3px_0px_#001f25] border-2 border-[#001f25]">
+              <div className="w-14 h-14 rounded-full bg-secondary-fixed flex items-center justify-center shadow-[3px_3px_0px_#ffbe08] border border-secondary/30">
                 <span className="material-symbols-outlined text-secondary text-2xl">landscape</span>
               </div>
               <h3 className="font-headline text-xl sm:text-2xl font-bold text-on-surface">
@@ -51,9 +51,9 @@ export const CultureEssence: React.FC<CultureEssenceProps> = ({ onStoryClick }) 
           </div>
 
           {/* Card 2: Intergenerational Connection */}
-          <div className="relative bg-surface-container-high p-space-lg rounded-[12px_24px_10px_26px] shadow-[4px_4px_0px_#001f25] border-3 border-[#001f25] flex flex-col justify-between gap-space-md transform hover:-translate-y-1.5 transition-transform duration-300">
+          <div className="relative bg-surface-container-high p-space-lg rounded-[12px_24px_10px_26px] shadow-[4px_4px_0px_#84f5f0] border-2 border-outline-variant/40 flex flex-col justify-between gap-space-md transform hover:-translate-y-1.5 transition-transform duration-300">
             <div className="flex flex-col gap-space-sm">
-              <div className="w-14 h-14 rounded-full bg-tertiary-fixed flex items-center justify-center shadow-[3px_3px_0px_#001f25] border-2 border-[#001f25]">
+              <div className="w-14 h-14 rounded-full bg-tertiary-fixed flex items-center justify-center shadow-[3px_3px_0px_#66d8d4] border border-tertiary/30">
                 <span className="material-symbols-outlined text-tertiary text-2xl">handshake</span>
               </div>
               <h3 className="font-headline text-xl sm:text-2xl font-bold text-on-surface">
@@ -70,9 +70,9 @@ export const CultureEssence: React.FC<CultureEssenceProps> = ({ onStoryClick }) 
           </div>
 
           {/* Card 3: Creative Therapy */}
-          <div className="relative bg-surface-container-low p-space-lg rounded-[22px_14px_20px_16px] shadow-[4px_4px_0px_#001f25] border-3 border-[#001f25] flex flex-col justify-between gap-space-md transform hover:-translate-y-1.5 transition-transform duration-300">
+          <div className="relative bg-surface-container-low p-space-lg rounded-[22px_14px_20px_16px] shadow-[4px_4px_0px_#73d1ff] border-2 border-outline-variant/40 flex flex-col justify-between gap-space-md transform hover:-translate-y-1.5 transition-transform duration-300">
             <div className="flex flex-col gap-space-sm">
-              <div className="w-14 h-14 rounded-full bg-primary-fixed flex items-center justify-center shadow-[3px_3px_0px_#001f25] border-2 border-[#001f25]">
+              <div className="w-14 h-14 rounded-full bg-primary-fixed flex items-center justify-center shadow-[3px_3px_0px_#c1e8ff] border border-primary/30">
                 <span className="material-symbols-outlined text-primary text-2xl">mood</span>
               </div>
               <h3 className="font-headline text-xl sm:text-2xl font-bold text-on-surface">
@@ -90,9 +90,9 @@ export const CultureEssence: React.FC<CultureEssenceProps> = ({ onStoryClick }) 
         </div>
 
         {/* Commitment Banner */}
-        <div className="mt-space-xl p-space-md md:p-space-lg bg-surface-container-lowest rounded-[20px_10px_22px_12px] shadow-[3px_3px_0px_#001f25] border-2 border-[#001f25] flex flex-col sm:flex-row items-center justify-between gap-space-md">
+        <div className="mt-space-xl p-space-md md:p-space-lg bg-surface-container-lowest rounded-[20px_10px_22px_12px] shadow-[3px_3px_0px_#ffdcc5] border-2 border-outline-variant/40 flex flex-col sm:flex-row items-center justify-between gap-space-md">
           <div className="flex items-center gap-space-md">
-            <div className="w-12 h-12 rounded-full bg-secondary-container text-white flex items-center justify-center shadow-[2px_2px_0px_#001f25] border border-[#001f25] flex-shrink-0">
+            <div className="w-12 h-12 rounded-full bg-secondary-container text-white flex items-center justify-center shadow-[2px_2px_0px_#ffbe08] border border-secondary-container flex-shrink-0">
               <span className="material-symbols-outlined text-2xl">workspace_premium</span>
             </div>
             <div className="flex flex-col">
@@ -128,7 +128,7 @@ export const CultureEssence: React.FC<CultureEssenceProps> = ({ onStoryClick }) 
             {TESTIMONIALS.map((t) => (
               <div
                 key={t.id}
-                className="bg-surface-container-low p-6 rounded-2xl border-2 border-[#001f25] shadow-[3px_3px_0px_#001f25] flex flex-col justify-between"
+                className="bg-surface-container-low p-6 rounded-2xl border-2 border-[#001f25] shadow-[3px_3px_0px_#c1e8ff] flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center gap-1 text-yellow-500 mb-3">

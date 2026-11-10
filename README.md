@@ -90,3 +90,4 @@ npm run preview
    - Calcula subtotal, barra de progreso para envío gratis nacional ($90.000 COP) y genera un mensaje personalizado listo para enviar a WhatsApp con los detalles de compra.
 4. **Diseño Responsivo Total:**
    - Diseñado y optimizado para pantallas móviles, tablets y monitores de escritorio.
+
