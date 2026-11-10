@@ -80,3 +80,4 @@ export const PaintClickEffect: React.FC = () => {
     </div>
   );
 };
+

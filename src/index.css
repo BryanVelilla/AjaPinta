@@ -5,10 +5,18 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    cursor: url('/cursor-brush.svg') 4 32, auto;
   }
   body {
     overscroll-behavior: none;
     font-family: 'Quicksand', sans-serif;
+    cursor: url('/cursor-brush.svg') 4 32, auto;
+  }
+  a, button, [role="button"], input[type="submit"], input[type="button"], select, .cursor-pointer {
+    cursor: url('/cursor-brush.svg') 4 32, pointer !important;
+  }
+  *:active {
+    cursor: url('/cursor-brush-active.svg') 4 32, pointer !important;
   }
 }
 
