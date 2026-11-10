@@ -11,7 +11,7 @@ export const PRODUCTS: Product[] = [
     originalPrice: 52000,
     description: 'Guardián de los ríos y manglares sucreños. Su textura de escamas en relieve permite crear degradados vibrantes con verdes esmeralda, amarillos sol y turquesas de la ciénaga.',
     longDescription: 'Las iguanas verdes son uno de los animales más entrañables y representativos del ecosistema de las ciénagas y sabanas de Sucre. Esta pieza artística capta su porte orgulloso sobre un tronco tallado, con escamas marcadas que guían el pincel para un acabado digno de exposición.',
-    image: 'https://images.unsplash.com/photo-1574786198875-49f5d09fe2d5?auto=format&fit=crop&w=800&q=80',
+    image: '/iguana-lateral.jpg',
     badge: '¡Favorito infantil!',
     badgeColor: 'bg-tertiary-container',
     rating: 4.8,
