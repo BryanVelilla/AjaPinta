@@ -62,30 +62,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
     >
       <div className="h-20 max-w-[1280px] mx-auto px-margin flex items-center justify-between gap-space-md">
         {/* Brand / Logo */}
-        <div className="flex items-center gap-space-md">
+        <div className="flex items-center">
           <a
             href="#inicio"
             onClick={(e) => {
               e.preventDefault();
               scrollToSection('inicio');
             }}
-            className="flex items-center gap-3 group"
+            className="flex items-center group py-1"
+            aria-label="ajá! pinta - Inicio"
           >
-            <div className="w-11 h-11 rounded-full bg-surface-container-lowest p-1.5 shadow-[2px_2px_0px_#001f25] border border-[#001f25] flex items-center justify-center transition-transform group-hover:rotate-6">
-              <img
-                src="/recurso-4.svg"
-                alt="Logo ajá! pinta"
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-headline text-2xl font-bold text-secondary leading-none tracking-tight">
-                ajá! pinta
-              </span>
-              <span className="text-[11px] font-bold text-tertiary tracking-wider uppercase font-quicksand">
-                Caribe & Yeso • Sucre
-              </span>
-            </div>
+            <img
+              src="/recurso-4.svg"
+              alt="Logo ajá! pinta"
+              className="h-14 sm:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-2 filter drop-shadow-[2px_2px_0px_#001f25]"
+            />
           </a>
         </div>
 
