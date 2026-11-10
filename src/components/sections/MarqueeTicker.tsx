@@ -4,8 +4,7 @@ export const MarqueeTicker: React.FC = () => {
   const items = [
     { icon: 'wb_sunny', text: 'CULTURA SUCREÑA' },
     { icon: 'brush', text: 'ARTE EN FAMILIA' },
-    { icon: 'cottage', text: 'TRADICIÓN DE BAHAREQUE' },
-    { icon: 'palette', text: 'YESO Y CERÁMICA FINA' },
+    { icon: 'palette', text: 'CERÁMICA' },
     { icon: 'celebration', text: 'ORGULLO CARIBE' },
     { icon: 'location_on', text: 'HECHO EN SINCELEJO' },
     { icon: 'favorite', text: 'DESCONEXIÓN DIGITAL' },

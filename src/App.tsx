@@ -28,13 +28,13 @@ export const App: React.FC = () => {
   };
 
   const openSombrero = () => {
-    const sombrero = PRODUCTS.find(p => p.id === 'sombrero-vueltiao');
-    if (sombrero) setSelectedProduct(sombrero);
+    const p = PRODUCTS.find(prod => prod.id === 'la-iguana') || PRODUCTS[0];
+    if (p) setSelectedProduct(p);
   };
 
   const openCasita = () => {
-    const casita = PRODUCTS.find(p => p.id === 'casita-bahareque');
-    if (casita) setSelectedProduct(casita);
+    const p = PRODUCTS.find(prod => prod.id === 'la-flor-del-bonche') || PRODUCTS[1] || PRODUCTS[0];
+    if (p) setSelectedProduct(p);
   };
 
   const handleOpenStory = () => {
