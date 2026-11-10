@@ -29,30 +29,24 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
           {/* Main Copy Column */}
           <div className="lg:col-span-7 flex flex-col gap-space-md text-left">
-            {/* Sticker Badge */}
-            <div className="inline-flex items-center gap-space-xs bg-secondary-fixed text-on-secondary-fixed px-space-md py-space-xs rounded-full shadow-[3px_3px_0px_#001f25] border-2 border-[#001f25] w-fit transform -rotate-2 hover:rotate-0 transition-transform">
-              <span className="material-symbols-outlined text-secondary text-base">palette</span>
-              <span className="text-xs font-bold uppercase tracking-wider font-headline">
-                Figuras en Yeso y Cerámica • Sucre, Colombia
-              </span>
-            </div>
-
             {/* Hero Title */}
             <h1 className="font-headline text-4xl sm:text-5xl lg:text-6xl text-on-surface font-extrabold leading-[1.08] tracking-tight">
               ¡Pinta, crea y dale color a{' '}
               <span className="relative inline-block text-secondary">
                 nuestras raíces!
                 <svg
-                  className="absolute left-0 -bottom-2 w-full h-3 text-secondary-container"
+                  className="absolute left-0 -bottom-2.5 w-full h-3.5 text-secondary-container pointer-events-none overflow-visible"
                   viewBox="0 0 100 20"
                   preserveAspectRatio="none"
                 >
                   <path
-                    d="M0 10 Q 25 20, 50 10 T 100 10"
+                    d="M0 12 Q 25 3, 50 12 T 100 10"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="6"
                     strokeLinecap="round"
+                    pathLength="100"
+                    className="animate-draw-line"
                   />
                 </svg>
               </span>
@@ -72,13 +66,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <span className="material-symbols-outlined">brush</span>
                 <span>Explorar el catálogo</span>
               </button>
-
-              <div className="flex items-center gap-space-xs bg-surface-container-lowest px-space-md py-space-xs rounded-full shadow-[3px_3px_0px_#001f25] border-2 border-[#001f25]">
-                <span className="material-symbols-outlined text-tertiary">verified</span>
-                <span className="text-xs sm:text-sm text-on-surface font-bold">
-                  100% Hecho a Mano en Sucre
-                </span>
-              </div>
             </div>
 
             {/* Micro Highlights */}

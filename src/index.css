@@ -77,3 +77,19 @@
   animation-play-state: paused;
 }
 
+/* Animated hand-drawn underline */
+@keyframes drawStroke {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-draw-line {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: drawStroke 1.4s cubic-bezier(0.65, 0, 0.35, 1) forwards 0.4s;
+}
+
