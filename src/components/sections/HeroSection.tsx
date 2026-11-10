@@ -32,10 +32,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             {/* Hero Title */}
             <h1 className="font-headline text-4xl sm:text-5xl lg:text-6xl text-on-surface font-extrabold leading-[1.08] tracking-tight">
               ¡Pinta, crea y dale color a{' '}
-              <span className="relative inline-block text-secondary">
+              <span className="relative inline-block text-secondary-container">
                 nuestras raíces!
                 <svg
-                  className="absolute left-0 -bottom-2.5 w-full h-3.5 text-secondary-container pointer-events-none overflow-visible"
+                  className="absolute left-0 -bottom-2.5 w-full h-3.5 text-secondary pointer-events-none overflow-visible"
                   viewBox="0 0 100 20"
                   preserveAspectRatio="none"
                 >
@@ -70,29 +70,29 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
             {/* Micro Highlights */}
             <div className="grid grid-cols-3 gap-space-sm pt-space-md max-w-lg">
-              <div className="flex flex-col bg-surface-container-low p-space-sm rounded-[16px_8px_18px_10px] shadow-[2px_2px_0px_#001f25] border-2 border-[#001f25]">
+              <div className="flex flex-col bg-secondary-fixed p-space-sm rounded-[16px_8px_18px_10px] shadow-[2px_2px_0px_#001f25] border-2 border-[#001f25]">
                 <span className="font-headline text-lg sm:text-xl font-bold text-secondary leading-none">
                   6 Colores
                 </span>
-                <span className="text-xs text-on-surface-variant font-medium mt-1">
+                <span className="text-xs text-on-secondary-fixed-variant font-medium mt-1">
                   Témperas vivas
                 </span>
               </div>
 
-              <div className="flex flex-col bg-surface-container-low p-space-sm rounded-[8px_16px_10px_18px] shadow-[2px_2px_0px_#001f25] border-2 border-[#001f25]">
+              <div className="flex flex-col bg-primary-fixed p-space-sm rounded-[8px_16px_10px_18px] shadow-[2px_2px_0px_#001f25] border-2 border-[#001f25]">
                 <span className="font-headline text-lg sm:text-xl font-bold text-primary leading-none">
                   2 Pinceles
                 </span>
-                <span className="text-xs text-on-surface-variant font-medium mt-1">
+                <span className="text-xs text-on-primary-fixed-variant font-medium mt-1">
                   Fino y plano pro
                 </span>
               </div>
 
-              <div className="flex flex-col bg-surface-container-low p-space-sm rounded-[14px_10px_16px_8px] shadow-[2px_2px_0px_#001f25] border-2 border-[#001f25]">
+              <div className="flex flex-col bg-tertiary-fixed p-space-sm rounded-[14px_10px_16px_8px] shadow-[2px_2px_0px_#001f25] border-2 border-[#001f25]">
                 <span className="font-headline text-lg sm:text-xl font-bold text-tertiary leading-none">
                   Guía Sabanera
                 </span>
-                <span className="text-xs text-on-surface-variant font-medium mt-1">
+                <span className="text-xs text-on-tertiary-fixed-variant font-medium mt-1">
                   Historia y tips Zenú
                 </span>
               </div>
@@ -145,7 +145,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </div>
 
               {/* Floating Neo-Brutalist Sticker */}
-              <div className="absolute -bottom-4 -left-2 z-30 bg-tertiary text-white font-headline text-sm md:text-base font-bold px-4 py-1.5 rounded-[18px_6px_16px_8px] shadow-[4px_4px_0px_#001f25] border-2 border-[#001f25] transform -rotate-6 animate-float">
+              <div className="absolute -bottom-4 -left-2 z-30 bg-[#ff3640] text-white font-headline text-sm md:text-base font-bold px-4 py-1.5 rounded-[18px_6px_16px_8px] shadow-[4px_4px_0px_#001f25] border-2 border-[#001f25] transform -rotate-6 animate-float">
                 ✨ ¡Listo para pintar!
               </div>
             </div>

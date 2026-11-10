@@ -75,7 +75,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
             <img
               src="/recurso-4.svg"
               alt="Logo ajá! pinta"
-              className="h-14 sm:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-2 filter drop-shadow-[2px_2px_0px_#001f25]"
+              className="h-14 sm:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-2"
             />
           </a>
         </div>
@@ -86,7 +86,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
             onClick={() => scrollToSection('inicio')}
             className={`px-4 py-1.5 text-sm font-bold rounded-full transition-all ${
               activeSection === 'inicio'
-                ? 'bg-secondary-container text-white shadow-[2px_2px_0px_#001f25]'
+                ? 'bg-secondary-container text-white shadow-[2px_2px_0px_#ffbe08]'
                 : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low'
             }`}
           >
@@ -96,7 +96,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
             onClick={() => scrollToSection('tienda')}
             className={`px-4 py-1.5 text-sm font-bold rounded-full transition-all ${
               activeSection === 'tienda'
-                ? 'bg-secondary-container text-white shadow-[2px_2px_0px_#001f25]'
+                ? 'bg-secondary-container text-white shadow-[2px_2px_0px_#ffbe08]'
                 : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low'
             }`}
           >
@@ -117,7 +117,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
             onClick={() => scrollToSection('esencia')}
             className={`px-4 py-1.5 text-sm font-bold rounded-full transition-all ${
               activeSection === 'esencia'
-                ? 'bg-secondary-container text-white shadow-[2px_2px_0px_#001f25]'
+                ? 'bg-secondary-container text-white shadow-[2px_2px_0px_#ffbe08]'
                 : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low'
             }`}
           >
