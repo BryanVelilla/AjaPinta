@@ -71,28 +71,28 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             {/* Micro Highlights */}
             <div className="grid grid-cols-3 gap-space-sm pt-space-md max-w-lg">
               <div className="flex flex-col bg-secondary-fixed p-space-sm rounded-[16px_8px_18px_10px] shadow-[3px_3px_0px_#ffb783] border-2 border-secondary/30">
-                <span className="font-headline text-lg sm:text-xl font-bold text-secondary leading-none">
+                <span className="font-headline text-lg sm:text-xl font-bold text-black leading-none">
                   6 Colores
                 </span>
-                <span className="text-xs text-on-secondary-fixed-variant font-medium mt-1">
+                <span className="text-xs text-black/80 font-medium mt-1">
                   Témperas vivas
                 </span>
               </div>
 
               <div className="flex flex-col bg-primary-fixed p-space-sm rounded-[8px_16px_10px_18px] shadow-[3px_3px_0px_#73d1ff] border-2 border-primary/30">
-                <span className="font-headline text-lg sm:text-xl font-bold text-primary leading-none">
+                <span className="font-headline text-lg sm:text-xl font-bold text-black leading-none">
                   2 Pinceles
                 </span>
-                <span className="text-xs text-on-primary-fixed-variant font-medium mt-1">
+                <span className="text-xs text-black/80 font-medium mt-1">
                   Fino y plano pro
                 </span>
               </div>
 
               <div className="flex flex-col bg-tertiary-fixed p-space-sm rounded-[14px_10px_16px_8px] shadow-[3px_3px_0px_#84f5f0] border-2 border-tertiary/30">
-                <span className="font-headline text-lg sm:text-xl font-bold text-tertiary leading-none">
+                <span className="font-headline text-lg sm:text-xl font-bold text-black leading-none">
                   Guía Sabanera
                 </span>
-                <span className="text-xs text-on-tertiary-fixed-variant font-medium mt-1">
+                <span className="text-xs text-black/80 font-medium mt-1">
                   Historia y tips Zenú
                 </span>
               </div>
