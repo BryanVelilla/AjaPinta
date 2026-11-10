@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    overscroll-behavior: none;
+    font-family: 'Quicksand', sans-serif;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #effbff;
+}
+::-webkit-scrollbar-thumb {
+  background: #73d1ff;
+  border-radius: 9999px;
+  border: 2px solid #001f25;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #007ea6;
+}
+
+/* Material Symbols sizing helper */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+}
+.material-symbols-outlined.fill-1 {
+  font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Sticker badge styling */
+.sticker-btn {
+  box-shadow: 3px 3px 0px #001f25;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.sticker-btn:hover {
+  transform: translate(-2px, -2px) rotate(0.5deg);
+  box-shadow: 5px 5px 0px #001f25;
+}
+.sticker-btn:active {
+  transform: translate(1px, 1px) scale(0.98);
+  box-shadow: 1px 1px 0px #001f25;
+}
+
+.sticker-card {
+  box-shadow: 5px 5px 0px #001f25;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.sticker-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0px #001f25;
+}
+
+/* Marquee continuous scroll */
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee-infinite {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 28s linear infinite;
+}
+
+.animate-marquee-infinite:hover {
+  animation-play-state: paused;
+}
+
