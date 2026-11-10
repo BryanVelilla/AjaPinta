@@ -13,14 +13,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 }) => {
   return (
     <section id="inicio" className="relative w-full overflow-hidden pt-space-xl pb-space-xl bg-surface">
-      {/* Caribbean pattern background using user's Recurso 3 and 1 */}
+      {/* Caribbean pattern background using user's Recurso 3 with clear, scaled figures */}
       <div
-        className="absolute inset-0 opacity-15 pointer-events-none mix-blend-multiply bg-repeat bg-center"
+        className="absolute inset-0 opacity-25 pointer-events-none mix-blend-multiply bg-center bg-no-repeat"
         style={{
           backgroundImage: `url('/recurso-3.svg')`,
-          backgroundSize: '360px',
+          backgroundSize: 'clamp(1200px, 100vw, 1900px)',
+          backgroundPosition: 'center 20%',
         }}
       />
+      {/* Soft gradient overlay to keep text comfortable and readable */}
+      <div className="absolute inset-0 bg-gradient-to-r from-surface via-surface/80 to-surface/45 pointer-events-none" />
 
       <div className="max-w-[1280px] mx-auto px-margin relative z-10 pt-4 md:pt-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
