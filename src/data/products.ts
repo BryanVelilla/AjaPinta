@@ -12,12 +12,17 @@ export const PRODUCTS: Product[] = [
     description: 'Guardián de los ríos y manglares sucreños. Su textura de escamas en relieve permite crear degradados vibrantes con verdes esmeralda, amarillos sol y turquesas de la ciénaga.',
     longDescription: 'Las iguanas verdes son uno de los animales más entrañables y representativos del ecosistema de las ciénagas y sabanas de Sucre. Esta pieza artística capta su porte orgulloso sobre un tronco tallado, con escamas marcadas que guían el pincel para un acabado digno de exposición.',
     image: '/iguana-lateral.jpg',
+    gallery: [
+      '/iguana-lateral.jpg',
+      '/iguana-frontal.jpg',
+      '/iguana-superior.jpg'
+    ],
     badge: '¡Favorito infantil!',
     badgeColor: 'bg-tertiary-container',
     rating: 4.8,
     reviewsCount: 67,
     includedItems: [
-      'Figura La Iguana del Caribe (20 x 10 cm)',
+      'Figura La Iguana del Caribe en yeso cerámico (20 x 10 cm)',
       '6 colores brillantes de alta pigmentación',
       '2 pinceles (delineador fino y plano suave)',
       'Guía didáctica de fauna sabanera de Sucre'
@@ -37,7 +42,11 @@ export const PRODUCTS: Product[] = [
     originalPrice: 54000,
     description: 'La flor insigne de los patios sabaneros y las polleras costeñas. Sus pétalos ondulados en relieve son ideales para pintar tonos carmesí, rosas vibrantes y pistilos dorados.',
     longDescription: 'El bonche (hibisco caribeño) es el adorno tradicional por excelencia en los bailes de cumbia, fandango y en los jardines coloniales de Sucre. Esta delicada pieza escultórica de pétalos abiertos rinde tributo a la alegría y feminidad caribeña, lista para convertirse en una joya decorativa pintada por ti.',
-    image: 'https://images.unsplash.com/photo-1550950158-d0d960dff51b?auto=format&fit=crop&w=800&q=80',
+    image: '/flor-del-bonche-frontal.jpg',
+    gallery: [
+      '/flor-del-bonche-frontal.jpg',
+      '/flor-del-bonche-superior.jpg'
+    ],
     badge: '¡Edición Floral!',
     badgeColor: 'bg-secondary-container',
     rating: 4.9,

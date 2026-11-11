@@ -12,6 +12,10 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
   const [quantity, setQuantity] = useState(1);
   const [varnishOption, setVarnishOption] = useState(false);
   const [addedAnimation, setAddedAnimation] = useState(false);
+  const [activeImage, setActiveImage] = useState<string | null>(null);
+
+  // Default active image or reset when product changes
+  const currentImage = activeImage || (product ? product.image : '');
 
   if (!product) return null;
 
@@ -50,9 +54,9 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
           <div className="relative bg-surface-container p-6 flex flex-col items-center justify-center border-b-4 md:border-b-0 md:border-r-4 border-[#001f25]">
             <div className="relative w-full max-w-sm rounded-[24px_12px_26px_10px] overflow-hidden border-2 border-[#001f25] shadow-[4px_4px_0px_#c1e8ff] bg-surface-container-highest">
               <img
-                src={product.image}
+                src={currentImage}
                 alt={product.name}
-                className="w-full h-72 md:h-80 object-cover object-center"
+                className="w-full h-72 md:h-80 object-cover object-center transition-all duration-300"
               />
               {product.badge && (
                 <div className={`absolute top-3 left-3 ${product.badgeColor || 'bg-secondary-container'} text-white text-xs font-bold px-3 py-1 rounded-full shadow-[2px_2px_0px_#ffbe08] border border-[#001f25]`}>
@@ -60,6 +64,29 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                 </div>
               )}
             </div>
+
+            {/* Gallery thumbnails if available */}
+            {product.gallery && product.gallery.length > 1 && (
+              <div className="mt-3 flex items-center gap-2 justify-center">
+                {product.gallery.map((imgUrl, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveImage(imgUrl)}
+                    className={`w-12 h-12 rounded-xl overflow-hidden border-2 transition-all ${
+                      currentImage === imgUrl
+                        ? 'border-secondary shadow-[2px_2px_0px_#ffbe08] scale-105'
+                        : 'border-[#001f25]/40 opacity-70 hover:opacity-100'
+                    }`}
+                  >
+                    <img
+                      src={imgUrl}
+                      alt={`Vista ${idx + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
 
             {/* Quick specs pill */}
             <div className="mt-4 flex flex-wrap gap-2 justify-center text-xs font-bold text-on-surface">
