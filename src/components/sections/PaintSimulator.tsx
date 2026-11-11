@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useCart } from '../../context/CartContext';
 import { PRODUCTS } from '../../data/products';
 
@@ -14,53 +14,191 @@ const CARIBBEAN_PALETTE = [
   { name: 'Blanco Yeso Puro', color: '#effbff' },
 ];
 
+const FLOR_PARTS = [
+  { id: 'Pétalo Superior', label: 'Pétalo Superior', icon: '🌸' },
+  { id: 'Pétalo Frontal', label: 'Pétalo Frontal', icon: '🌸' },
+  { id: 'Pétalo Izquierdo', label: 'Pétalo Izquierdo', icon: '🌸' },
+  { id: 'Pétalo Derecho', label: 'Pétalo Derecho', icon: '🌸' },
+  { id: 'Pétalo Inferior', label: 'Pétalo Inferior', icon: '🌸' },
+  { id: 'Pistilo y Polen', label: 'Pistilo y Polen', icon: '✨' },
+  { id: 'Base y Cáliz', label: 'Base y Cáliz', icon: '🍃' },
+];
+
+const INITIAL_COLORS: Record<string, string> = {
+  'Pétalo Superior': '#ff3640',
+  'Pétalo Frontal': '#ff3640',
+  'Pétalo Izquierdo': '#ff8500',
+  'Pétalo Derecho': '#ff8500',
+  'Pétalo Inferior': '#ffbe08',
+  'Pistilo y Polen': '#ffbe08',
+  'Base y Cáliz': '#00827f',
+};
+
+function hexToRgba(hex: string): [number, number, number, number] {
+  let c = hex.replace('#', '');
+  if (c.length === 3) {
+    c = c.split('').map(x => x + x).join('');
+  }
+  const num = parseInt(c, 16);
+  return [
+    ((num >> 16) & 255) / 255,
+    ((num >> 8) & 255) / 255,
+    (num & 255) / 255,
+    1.0,
+  ];
+}
+
 export const PaintSimulator: React.FC = () => {
   const { addToCart } = useCart();
-  const [selectedColor, setSelectedColor] = useState(CARIBBEAN_PALETTE[0].color);
+  const [selectedColor, setSelectedColor] = useState<string>(CARIBBEAN_PALETTE[1].color); // Naranja Corraleja
+  const [partColors, setPartColors] = useState<Record<string, string>>(INITIAL_COLORS);
+  const [lastPainted, setLastPainted] = useState<string | null>('Pétalo Frontal');
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const [loadingProgress, setLoadingProgress] = useState<number>(0);
+  const [isAutoRotating, setIsAutoRotating] = useState<boolean>(false);
+  const [hasInteracted, setHasInteracted] = useState<boolean>(false);
 
-  // Sombrero parts colors
-  const [hatColors, setHatColors] = useState({
-    banda: '#ff8500',
-    corona: '#ffbe08',
-    alaExterna: '#006384',
-    alaInterna: '#5bcecb',
-    pintaCentral: '#ff3640',
-    ribete: '#944b00'
-  });
+  const modelViewerRef = useRef<HTMLElement | null>(null);
+  const pointerDownRef = useRef<{ x: number; y: number; time: number } | null>(null);
 
-  const handleColorClick = (part: keyof typeof hatColors) => {
-    setHatColors(prev => ({
-      ...prev,
-      [part]: selectedColor
-    }));
+  // Apply colors to model-viewer materials
+  const applyColorsToModel = useCallback((colors: Record<string, string>) => {
+    const viewer = modelViewerRef.current as any;
+    if (!viewer || !viewer.model || !viewer.model.materials) return;
+
+    viewer.model.materials.forEach((mat: any) => {
+      const colorHex = colors[mat.name];
+      if (colorHex && mat.pbrMetallicRoughness) {
+        const rgba = hexToRgba(colorHex);
+        if (typeof mat.pbrMetallicRoughness.setBaseColorFactor === 'function') {
+          mat.pbrMetallicRoughness.setBaseColorFactor(rgba);
+        } else {
+          mat.pbrMetallicRoughness.baseColorFactor = rgba;
+        }
+      }
+    });
+  }, []);
+
+  // Update specific material color
+  const paintPartByName = useCallback((partName: string, colorHex: string) => {
+    const viewer = modelViewerRef.current as any;
+    if (viewer && viewer.model && viewer.model.materials) {
+      const mat = viewer.model.materials.find((m: any) => m.name === partName);
+      if (mat && mat.pbrMetallicRoughness) {
+        const rgba = hexToRgba(colorHex);
+        if (typeof mat.pbrMetallicRoughness.setBaseColorFactor === 'function') {
+          mat.pbrMetallicRoughness.setBaseColorFactor(rgba);
+        } else {
+          mat.pbrMetallicRoughness.baseColorFactor = rgba;
+        }
+      }
+    }
+
+    setPartColors(prev => ({ ...prev, [partName]: colorHex }));
+    setLastPainted(partName);
+  }, []);
+
+  // Model-viewer event listeners
+  useEffect(() => {
+    const viewer = modelViewerRef.current as any;
+    if (!viewer) return;
+
+    const handleProgress = (event: any) => {
+      if (event.detail && typeof event.detail.totalProgress === 'number') {
+        setLoadingProgress(Math.round(event.detail.totalProgress * 100));
+      }
+    };
+
+    const handleLoad = () => {
+      setIsLoaded(true);
+      setLoadingProgress(100);
+      // Initialize with our starter Caribbean colors
+      setTimeout(() => {
+        applyColorsToModel(partColors);
+      }, 50);
+    };
+
+    viewer.addEventListener('progress', handleProgress);
+    viewer.addEventListener('load', handleLoad);
+
+    return () => {
+      viewer.removeEventListener('progress', handleProgress);
+      viewer.removeEventListener('load', handleLoad);
+    };
+  }, [applyColorsToModel, partColors]);
+
+  // Click on 3D Canvas
+  const handlePointerDown = (e: React.PointerEvent) => {
+    pointerDownRef.current = { x: e.clientX, y: e.clientY, time: Date.now() };
   };
 
+  const handlePointerUp = (e: React.PointerEvent) => {
+    setHasInteracted(true);
+    if (!pointerDownRef.current) return;
+    const dx = Math.abs(e.clientX - pointerDownRef.current.x);
+    const dy = Math.abs(e.clientY - pointerDownRef.current.y);
+    const dt = Date.now() - pointerDownRef.current.time;
+    pointerDownRef.current = null;
+
+    // Detect click vs drag: only trigger paint if click was quick (< 350ms) and without drag (< 6px)
+    if (dx < 6 && dy < 6 && dt < 350) {
+      const viewer = modelViewerRef.current as any;
+      if (viewer && typeof viewer.materialFromPoint === 'function') {
+        const mat = viewer.materialFromPoint(e.clientX, e.clientY);
+        if (mat) {
+          const partName = mat.name;
+          if (partName && FLOR_PARTS.some(p => p.id === partName)) {
+            paintPartByName(partName, selectedColor);
+          } else if (viewer.model && viewer.model.materials) {
+            const idx = viewer.model.materials.indexOf(mat);
+            if (idx >= 0 && idx < FLOR_PARTS.length) {
+              paintPartByName(FLOR_PARTS[idx].id, selectedColor);
+            }
+          }
+        }
+      }
+    }
+  };
+
+  // Quick Action: Randomize
   const handleRandomize = () => {
     const getRandomColor = () =>
-      CARIBBEAN_PALETTE[Math.floor(Math.random() * CARIBBEAN_PALETTE.length)].color;
+      CARIBBEAN_PALETTE[Math.floor(Math.random() * (CARIBBEAN_PALETTE.length - 1))].color;
 
-    setHatColors({
-      banda: getRandomColor(),
-      corona: getRandomColor(),
-      alaExterna: getRandomColor(),
-      alaInterna: getRandomColor(),
-      pintaCentral: getRandomColor(),
-      ribete: getRandomColor()
+    const newColors: Record<string, string> = {};
+    FLOR_PARTS.forEach(part => {
+      newColors[part.id] = getRandomColor();
     });
+
+    setPartColors(newColors);
+    applyColorsToModel(newColors);
+    setLastPainted('¡Combinación aleatoria aplicada!');
   };
 
+  // Quick Action: Reset to unpainted white plaster
   const handleReset = () => {
-    setHatColors({
-      banda: '#effbff',
-      corona: '#effbff',
-      alaExterna: '#effbff',
-      alaInterna: '#effbff',
-      pintaCentral: '#effbff',
-      ribete: '#effbff'
+    const white = '#effbff';
+    const newColors: Record<string, string> = {};
+    FLOR_PARTS.forEach(part => {
+      newColors[part.id] = white;
     });
+
+    setPartColors(newColors);
+    applyColorsToModel(newColors);
+    setLastPainted('Lienzo en yeso cerámico blanco');
   };
 
-  const sombreroProduct = PRODUCTS[0]; // Sombrero Vueltiao
+  const handleResetCamera = () => {
+    const viewer = modelViewerRef.current as any;
+    if (viewer) {
+      if (typeof viewer.resetTurntableRotation === 'function') {
+        viewer.resetTurntableRotation();
+      }
+      viewer.cameraOrbit = '0deg 75deg 105%';
+    }
+  };
+
+  const florProduct = PRODUCTS[1]; // La Flor del Bonche
 
   return (
     <section id="simulador" className="w-full py-space-xl bg-surface-container-low relative overflow-hidden border-y-2 border-[#001f25]/10">
@@ -71,113 +209,155 @@ export const PaintSimulator: React.FC = () => {
       />
 
       <div className="max-w-[1280px] mx-auto px-margin relative z-10">
+        {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-8">
-          <div className="inline-flex items-center gap-2 bg-secondary-fixed text-on-secondary-fixed px-4 py-1 rounded-full shadow-[2px_2px_0px_#ffb783] border border-secondary/30 text-xs font-bold uppercase tracking-wider mb-2">
-            <span className="material-symbols-outlined text-sm">palette</span>
-            <span>Experiencia Interactiva Virtual</span>
+          <div className="inline-flex items-center gap-2 bg-secondary-fixed text-on-secondary-fixed px-4 py-1 rounded-full shadow-[2px_2px_0px_#ffb783] border border-secondary/30 text-xs font-bold uppercase tracking-wider mb-3">
+            <span className="material-symbols-outlined text-sm">view_in_ar</span>
+            <span>Simulador 3D Interactivo en Tiempo Real</span>
           </div>
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-on-surface">
-            ¡Pruébalo antes de recibirlo en casa!
+            ¡Pinta en 3D antes de recibirlo en casa!
           </h2>
           <p className="text-sm md:text-base text-on-surface-variant mt-2">
-            Selecciona un color de tu paleta caribeña y haz clic sobre las diferentes zonas del Sombrero Vueltiao para imaginar cómo lucirá en tu repisa.
+            Gira <strong>La Flor del Bonche</strong> en 360°, elige un color de tu paleta caribeña y toca directamente los pétalos para ver tu figura cobrar vida con iluminación real.
           </p>
         </div>
 
         <div className="bg-surface-container-lowest rounded-[32px_16px_36px_18px] p-6 md:p-10 border-4 border-[#001f25] shadow-[7px_7px_0px_#c1e8ff] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Interactive SVG Canvas */}
-          <div className="lg:col-span-7 flex flex-col items-center">
-            <div className="relative w-full max-w-md aspect-[4/3] bg-surface rounded-3xl border-2 border-[#001f25] p-6 flex items-center justify-center shadow-inner overflow-hidden">
-              <svg
-                viewBox="0 0 400 300"
-                className="w-full h-full filter drop-shadow-md cursor-pointer select-none"
-              >
-                {/* Background Shadow of Hat */}
-                <ellipse cx="200" cy="230" rx="170" ry="40" fill="#001f25" opacity="0.1" />
+          
+          {/* ======================================================== */}
+          {/*                 3D INTERACTIVE CANVAS                    */}
+          {/* ======================================================== */}
+          <div className="lg:col-span-7 flex flex-col items-center w-full">
+            <div
+              className="relative w-full aspect-[4/3] bg-gradient-to-b from-[#f0f9fc] to-[#e4f3f8] rounded-3xl border-3 border-[#001f25] flex items-center justify-center shadow-inner overflow-hidden select-none"
+              onPointerDown={handlePointerDown}
+              onPointerUp={handlePointerUp}
+            >
+              {/* Top Banner inside canvas */}
+              <div className="absolute top-3 left-4 right-4 flex items-center justify-between pointer-events-none z-10">
+                <span className="text-[11px] font-bold text-on-surface bg-surface/90 backdrop-blur-sm px-3 py-1 rounded-full border border-[#001f25]/20 shadow-sm flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+                  <span>🌺 Modelo 3D: La Flor del Bonche</span>
+                </span>
 
-                {/* Ala Externa */}
-                <path
-                  d="M 40,200 C 40,160 360,160 360,200 C 360,240 40,240 40,200 Z"
-                  fill={hatColors.alaExterna}
-                  stroke="#001f25"
-                  strokeWidth="4"
-                  onClick={() => handleColorClick('alaExterna')}
-                  className="transition-colors hover:brightness-105"
-                />
+                {lastPainted && (
+                  <span className="text-[11px] font-bold text-white bg-[#001f25] px-3 py-1 rounded-full shadow-[2px_2px_0px_#ffbe08] animate-fadeIn">
+                    Pintado: {lastPainted}
+                  </span>
+                )}
+              </div>
 
-                {/* Ala Interna / Relieve de vueltas */}
-                <path
-                  d="M 80,195 C 80,165 320,165 320,195 C 320,225 80,225 80,195 Z"
-                  fill={hatColors.alaInterna}
-                  stroke="#001f25"
-                  strokeWidth="3"
-                  strokeDasharray="6 4"
-                  onClick={() => handleColorClick('alaInterna')}
-                  className="transition-colors hover:brightness-105"
-                />
+              {/* Google Model Viewer Web Component */}
+              <model-viewer
+                ref={modelViewerRef as any}
+                src="/flor-del-bonche-3d.glb?v=materials7"
+                alt="Modelo 3D de La Flor del Bonche"
+                poster="/flor-del-bonche-frontal.jpg"
+                loading="eager"
+                reveal="auto"
+                camera-controls
+                auto-rotate={isAutoRotating ? '' : undefined}
+                rotation-per-second="20deg"
+                touch-action="pan-y"
+                shadow-intensity="1.3"
+                shadow-softness="0.5"
+                exposure="1.1"
+                camera-orbit="0deg 75deg 105%"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  backgroundColor: 'transparent',
+                  outline: 'none',
+                }}
+              />
 
-                {/* Corona / Copa del sombrero */}
-                <path
-                  d="M 120,175 C 115,100 130,70 200,65 C 270,70 285,100 280,175 Z"
-                  fill={hatColors.corona}
-                  stroke="#001f25"
-                  strokeWidth="4"
-                  onClick={() => handleColorClick('corona')}
-                  className="transition-colors hover:brightness-105"
-                />
+              {/* Loading progress overlay */}
+              {!isLoaded && (
+                <div className="absolute inset-0 bg-surface/90 backdrop-blur-sm flex flex-col items-center justify-center p-6 z-20">
+                  <div className="w-12 h-12 rounded-full border-4 border-secondary/30 border-t-secondary animate-spin mb-3 shadow-[2px_2px_0px_#ffbe08]" />
+                  <span className="font-headline font-bold text-sm text-on-surface">
+                    Cargando modelo 3D de La Flor...
+                  </span>
+                  <span className="text-xs text-on-surface-variant font-medium mt-1">
+                    {loadingProgress}% completado
+                  </span>
+                </div>
+              )}
 
-                {/* Banda tradicional sabanera */}
-                <path
-                  d="M 118,160 C 130,150 270,150 282,160 C 280,175 120,175 118,160 Z"
-                  fill={hatColors.banda}
-                  stroke="#001f25"
-                  strokeWidth="3"
-                  onClick={() => handleColorClick('banda')}
-                  className="transition-colors hover:brightness-105"
-                />
+              {/* Interaction Hint for First-time users */}
+              {isLoaded && !hasInteracted && (
+                <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 pointer-events-none bg-surface/90 backdrop-blur-sm border border-[#001f25]/20 text-[#001f25] text-xs font-bold px-4 py-1.5 rounded-full shadow-md flex items-center gap-2 animate-bounce">
+                  <span className="material-symbols-outlined text-sm text-secondary">touch_app</span>
+                  <span>Toca un pétalo para pintarlo • Arrastra para girar en 360°</span>
+                </div>
+              )}
 
-                {/* Pinta central geométrica Zenú */}
-                <polygon
-                  points="200,85 220,115 200,145 180,115"
-                  fill={hatColors.pintaCentral}
-                  stroke="#001f25"
-                  strokeWidth="3"
-                  onClick={() => handleColorClick('pintaCentral')}
-                  className="transition-colors hover:brightness-105"
-                />
+              {/* In-Canvas Floating Camera Controls */}
+              {isLoaded && (
+                <div className="absolute bottom-3 right-3 z-10 flex items-center gap-1.5 bg-surface/90 backdrop-blur-sm p-1 rounded-full border border-[#001f25]/30 shadow-[2px_2px_0px_#c1e8ff]">
+                  <button
+                    type="button"
+                    onClick={() => setIsAutoRotating(!isAutoRotating)}
+                    title={isAutoRotating ? 'Pausar rotación' : 'Activar auto-rotación 360°'}
+                    className="w-8 h-8 rounded-full bg-surface-container hover:bg-secondary-fixed text-on-surface flex items-center justify-center transition-all hover:scale-105"
+                  >
+                    <span className="material-symbols-outlined text-base">
+                      {isAutoRotating ? 'pause' : '360'}
+                    </span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleResetCamera}
+                    title="Centrar vista"
+                    className="w-8 h-8 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface flex items-center justify-center transition-all hover:scale-105"
+                  >
+                    <span className="material-symbols-outlined text-base">restart_alt</span>
+                  </button>
+                </div>
+              )}
+            </div>
 
-                {/* Ribete superior de copa */}
-                <ellipse
-                  cx="200"
-                  cy="70"
-                  rx="40"
-                  ry="12"
-                  fill={hatColors.ribete}
-                  stroke="#001f25"
-                  strokeWidth="3"
-                  onClick={() => handleColorClick('ribete')}
-                  className="transition-colors hover:brightness-105"
-                />
-
-                {/* Micro tooltip sticker */}
-                <text x="200" y="270" textAnchor="middle" fill="#001f25" fontSize="12" fontWeight="700">
-                  ✨ Haz clic en cualquier parte para pintar
-                </text>
-              </svg>
+            {/* Direct Part Selector Chips (easy 1-click painting option) */}
+            <div className="w-full mt-3">
+              <span className="text-[11px] font-bold text-on-surface-variant block mb-1.5 text-center">
+                O selecciona directamente la zona que deseas pintar con tu color activo:
+              </span>
+              <div className="flex flex-wrap items-center justify-center gap-1.5">
+                {FLOR_PARTS.map((part) => {
+                  const partColor = partColors[part.id] || '#effbff';
+                  return (
+                    <button
+                      key={part.id}
+                      type="button"
+                      onClick={() => paintPartByName(part.id, selectedColor)}
+                      className="px-2.5 py-1 rounded-full text-xs font-bold border border-[#001f25]/40 hover:border-secondary bg-surface transition-all flex items-center gap-1.5 shadow-[1px_1px_0px_#ffdcc5] hover:scale-105"
+                    >
+                      <span
+                        className="w-3.5 h-3.5 rounded-full border border-black/20 shadow-sm flex-shrink-0"
+                        style={{ backgroundColor: partColor }}
+                      />
+                      <span className="text-[11px] text-on-surface">{part.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
             {/* Quick Actions for simulator */}
-            <div className="flex gap-2 mt-4">
+            <div className="flex gap-2.5 mt-3.5">
               <button
+                type="button"
                 onClick={handleRandomize}
-                className="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary-fixed text-xs font-bold border border-outline-variant/60 shadow-[2px_2px_0px_#ffdcc5] flex items-center gap-1.5"
+                className="px-4 py-2 rounded-full bg-surface-container hover:bg-secondary-fixed text-xs font-bold border border-outline-variant/60 shadow-[2px_2px_0px_#ffdcc5] flex items-center gap-1.5 transition-all"
               >
                 <span className="material-symbols-outlined text-sm text-secondary">casino</span>
                 <span>Colores al azar</span>
               </button>
               <button
+                type="button"
                 onClick={handleReset}
-                className="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high text-xs font-bold border border-outline-variant/60 shadow-[2px_2px_0px_#c1e8ff] flex items-center gap-1.5"
+                className="px-4 py-2 rounded-full bg-surface-container hover:bg-surface-container-high text-xs font-bold border border-outline-variant/60 shadow-[2px_2px_0px_#c1e8ff] flex items-center gap-1.5 transition-all"
               >
                 <span className="material-symbols-outlined text-sm">restart_alt</span>
                 <span>Lienzo blanco (Yeso)</span>
@@ -185,7 +365,9 @@ export const PaintSimulator: React.FC = () => {
             </div>
           </div>
 
-          {/* Palette Picker & Cart CTA */}
+          {/* ======================================================== */}
+          {/*             PALETTE PICKER & PRODUCT CARD CTA            */}
+          {/* ======================================================== */}
           <div className="lg:col-span-5 flex flex-col gap-5">
             <div>
               <span className="text-xs font-bold text-secondary uppercase tracking-wider block">
@@ -203,6 +385,7 @@ export const PaintSimulator: React.FC = () => {
                 return (
                   <button
                     key={swatch.color}
+                    type="button"
                     onClick={() => setSelectedColor(swatch.color)}
                     className={`flex flex-col items-center gap-1 p-2 rounded-xl border-2 transition-all ${
                       isSelected
@@ -222,28 +405,42 @@ export const PaintSimulator: React.FC = () => {
               })}
             </div>
 
-            {/* Step 2 summary card */}
-            <div className="bg-surface p-4 rounded-2xl border-2 border-outline-variant/60 shadow-[3px_3px_0px_#ffdcc5] flex flex-col gap-2">
-              <div className="flex items-center justify-between">
+            {/* Step 2 summary card for La Flor del Bonche */}
+            <div className="bg-surface p-5 rounded-2xl border-2 border-outline-variant/60 shadow-[3px_3px_0px_#ffdcc5] flex flex-col gap-2.5">
+              <div className="flex items-start justify-between gap-2">
                 <div>
-                  <span className="text-xs font-bold text-tertiary">Kit listo para enviar:</span>
-                  <h4 className="font-headline text-base font-bold text-on-surface">
-                    Sombrero Vueltiao Zenú
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold text-tertiary">Kit listo para enviar:</span>
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full text-white bg-secondary-container">
+                      ¡Edición Floral!
+                    </span>
+                  </div>
+                  <h4 className="font-headline text-lg font-bold text-on-surface mt-0.5">
+                    {florProduct.name}
                   </h4>
+                  <span className="text-xs text-on-surface-variant font-medium">
+                    {florProduct.subtitle}
+                  </span>
                 </div>
-                <span className="font-headline text-lg font-bold text-secondary">
-                  $48.000 COP
-                </span>
+                <div className="text-right">
+                  <span className="font-headline text-xl font-bold text-secondary block">
+                    ${florProduct.price.toLocaleString('es-CO')}
+                  </span>
+                  <span className="text-[10px] text-on-surface-variant/70 font-bold uppercase">COP</span>
+                </div>
               </div>
-              <p className="text-xs text-on-surface-variant">
-                Incluye la figura física en yeso cerámico con los 6 colores primarios y secundarios, pinceles y guía didáctica.
+
+              <p className="text-xs text-on-surface-variant leading-relaxed">
+                Incluye la escultura física de La Flor del Bonche en cerámica con pétalos tridimensionales, 6 témperas acrílicas, 2 pinceles y guía artística floral caribeña.
               </p>
+
               <button
-                onClick={() => addToCart(sombreroProduct, 1, false)}
-                className="mt-2 w-full py-2.5 px-4 rounded-full bg-secondary-container text-white font-headline text-sm font-bold shadow-[3px_3px_0px_#ffbe08] hover:bg-secondary active:translate-x-[1px] active:translate-y-[1px] transition-all flex items-center justify-center gap-2"
+                type="button"
+                onClick={() => addToCart(florProduct, 1, false)}
+                className="mt-2 w-full py-2.5 px-4 rounded-full bg-secondary text-white font-headline text-sm font-bold shadow-[3px_3px_0px_#ffbe08] hover:bg-[#e07500] active:translate-x-[1px] active:translate-y-[1px] transition-all flex items-center justify-center gap-2"
               >
                 <span className="material-symbols-outlined text-lg">brush</span>
-                <span>¡Pedir este kit para pintar en casa!</span>
+                <span>¡Pedir kit Flor del Bonche para pintar!</span>
               </button>
             </div>
           </div>
@@ -252,4 +449,3 @@ export const PaintSimulator: React.FC = () => {
     </section>
   );
 };
-

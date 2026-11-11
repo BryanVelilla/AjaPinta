@@ -17,6 +17,7 @@ export const PRODUCTS: Product[] = [
       '/iguana-frontal.jpg',
       '/iguana-superior.jpg'
     ],
+    model3d: '/iguana-3d.glb',
     badge: '¡Favorito infantil!',
     badgeColor: 'bg-tertiary-container',
     rating: 4.8,
@@ -47,6 +48,7 @@ export const PRODUCTS: Product[] = [
       '/flor-del-bonche-frontal.jpg',
       '/flor-del-bonche-superior.jpg'
     ],
+    model3d: '/flor-del-bonche-3d.glb?v=materials7',
     badge: '¡Edición Floral!',
     badgeColor: 'bg-secondary-container',
     rating: 4.9,

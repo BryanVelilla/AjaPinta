@@ -106,16 +106,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
             {/* Stacked Cards */}
             <div className="relative w-full max-w-md flex flex-col items-center">
-              {/* Card 1: Sombrero Vueltiao (Interactive click) */}
+              {/* Card 1: La Iguana Sabanera (Interactive click) */}
               <div
                 onClick={onOpenSombrero}
                 className="cursor-pointer w-11/12 bg-surface-container-lowest p-space-xs rounded-[28px_14px_30px_16px] shadow-[6px_6px_0px_#c1e8ff] border-3 border-[#001f25] transform -rotate-3 hover:rotate-0 hover:scale-[1.02] transition-all duration-300 group"
               >
                 <div className="relative overflow-hidden rounded-[24px_10px_26px_12px] bg-surface-container-highest">
                   <img
-                    alt="Sombrero Vueltiao artesanal en cerámica listo para pintar"
+                    alt="Figura artesanal de La Iguana Sabanera lista para pintar"
                     className="w-full h-56 object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDezoS0ePDAAdtj1eVEF3u9fW0KRg_VYN6OB-cxK4mAxKHixP7-MNoIpa_OQakfFKwaxEMDM72hiK4vXhmeZCltnia-OGL_vWUp_nyBkQySrB6Ea2f7fVwraZd6lRmQJRPD-qPbnw_DbIeGlZvEAMzwOZ_GX-fHT97m7erE_Tnet40SLiEPsYsLj-R3VQwlPYGk6hg6vrooX4k0nqlv6rt0gbiLCXeJf_EBS-AM9U"
+                    src="/iguana-hero.jpg"
                   />
                   {/* Sticker Top Photo */}
                   <div className="absolute top-2 left-2 bg-secondary-container text-white px-3 py-1 rounded-full shadow-[2px_2px_0px_#ffbe08] border border-secondary-container flex items-center gap-1 text-xs font-bold">
@@ -125,21 +125,21 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 </div>
               </div>
 
-              {/* Card 2: Casita Bahareque (Interactive click) */}
+              {/* Card 2: La Flor del Bonche (Interactive click) */}
               <div
                 onClick={onOpenCasita}
                 className="cursor-pointer w-9/12 bg-surface-container-lowest p-space-xs rounded-[16px_28px_14px_26px] shadow-[5px_5px_0px_#84f5f0] border-3 border-[#001f25] -mt-16 ml-20 transform rotate-4 hover:rotate-1 hover:scale-[1.03] transition-all duration-300 z-20 group"
               >
                 <div className="relative overflow-hidden rounded-[12px_24px_10px_22px] bg-tertiary-fixed">
                   <img
-                    alt="Casita colonial caribeña de bahareque en miniatura artesanal"
+                    alt="Figura artesanal de La Flor del Bonche lista para pintar"
                     className="w-full h-44 object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHHLwJBDK6c17466MVhYCjyLOZ-TrWbK9SSYvjFTxgpR9yuXEoipraFzABOQUbG0_uLdt37dNc0vlD3VN-mA2BdEPQVBrt2IpbW_jCfZ9s636bwOg-jAIjVaSI_dn9v3St60a-q_7wruMiRP7hPDyWUpekEu3KIsVH2qeHkkm4FubcaqvpnD_g7vbu0S17C84t8HguokC87_6gZDoDW9GWWgyndulL6kqvY39MKT0"
+                    src="/flor-hero.jpg"
                   />
                   {/* Corner Badge */}
                   <div className="absolute bottom-2 right-2 bg-primary text-white px-2.5 py-0.5 rounded-full shadow-[2px_2px_0px_#73d1ff] border border-primary flex items-center gap-1 text-[11px] font-bold">
                     <span className="material-symbols-outlined text-xs">favorite</span>
-                    <span>Edición Sincelejo</span>
+                    <span>Edición Sucre</span>
                   </div>
                 </div>
               </div>

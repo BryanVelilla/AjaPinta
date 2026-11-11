@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Product } from '../../types';
 import { useCart } from '../../context/CartContext';
+import { ModelViewer3D } from './ModelViewer3D';
 
 interface ProductDetailModalProps {
   product: Product | null;
@@ -12,12 +13,20 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
   const [quantity, setQuantity] = useState(1);
   const [varnishOption, setVarnishOption] = useState(false);
   const [addedAnimation, setAddedAnimation] = useState(false);
+  const [selectedView, setSelectedView] = useState<'image' | '3d'>('image');
   const [activeImage, setActiveImage] = useState<string | null>(null);
 
-  // Default active image or reset when product changes
-  const currentImage = activeImage || (product ? product.image : '');
+  // Reset states whenever product changes
+  useEffect(() => {
+    setSelectedView('image');
+    setActiveImage(null);
+    setQuantity(1);
+    setVarnishOption(false);
+  }, [product?.id]);
 
   if (!product) return null;
+
+  const currentImage = activeImage || product.image;
 
   const handleAddToCart = () => {
     addToCart(product, quantity, varnishOption);
@@ -50,43 +59,77 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
         </button>
 
         <div className="grid grid-cols-1 md:grid-cols-2">
-          {/* Image & Badges */}
+          {/* Image / 3D Model & Badges */}
           <div className="relative bg-surface-container p-6 flex flex-col items-center justify-center border-b-4 md:border-b-0 md:border-r-4 border-[#001f25]">
             <div className="relative w-full max-w-sm rounded-[24px_12px_26px_10px] overflow-hidden border-2 border-[#001f25] shadow-[4px_4px_0px_#c1e8ff] bg-surface-container-highest">
-              <img
-                src={currentImage}
-                alt={product.name}
-                className="w-full h-72 md:h-80 object-cover object-center transition-all duration-300"
-              />
-              {product.badge && (
-                <div className={`absolute top-3 left-3 ${product.badgeColor || 'bg-secondary-container'} text-white text-xs font-bold px-3 py-1 rounded-full shadow-[2px_2px_0px_#ffbe08] border border-[#001f25]`}>
-                  {product.badge}
+              {selectedView === '3d' && product.model3d ? (
+                <ModelViewer3D
+                  src={product.model3d}
+                  alt={product.name}
+                  poster={product.image}
+                />
+              ) : (
+                <div className="relative w-full h-72 md:h-80">
+                  <img
+                    src={currentImage}
+                    alt={product.name}
+                    className="w-full h-full object-cover object-center transition-all duration-300"
+                  />
+                  {product.badge && (
+                    <div className={`absolute top-3 left-3 ${product.badgeColor || 'bg-secondary-container'} text-white text-xs font-bold px-3 py-1 rounded-full shadow-[2px_2px_0px_#ffbe08] border border-[#001f25]`}>
+                      {product.badge}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
 
-            {/* Gallery thumbnails if available */}
-            {product.gallery && product.gallery.length > 1 && (
-              <div className="mt-3 flex items-center gap-2 justify-center">
-                {product.gallery.map((imgUrl, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setActiveImage(imgUrl)}
-                    className={`w-12 h-12 rounded-xl overflow-hidden border-2 transition-all ${
-                      currentImage === imgUrl
-                        ? 'border-secondary shadow-[2px_2px_0px_#ffbe08] scale-105'
-                        : 'border-[#001f25]/40 opacity-70 hover:opacity-100'
-                    }`}
-                  >
-                    <img
-                      src={imgUrl}
-                      alt={`Vista ${idx + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
-            )}
+            {/* Gallery thumbnails with 3D model at the end */}
+            <div className="mt-3 flex items-center gap-2 justify-center flex-wrap">
+              {/* Image thumbnails */}
+              {product.gallery && product.gallery.map((imgUrl, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => {
+                    setSelectedView('image');
+                    setActiveImage(imgUrl);
+                  }}
+                  className={`w-12 h-12 rounded-xl overflow-hidden border-2 transition-all ${
+                    selectedView === 'image' && currentImage === imgUrl
+                      ? 'border-secondary shadow-[2px_2px_0px_#ffbe08] scale-105'
+                      : 'border-[#001f25]/40 opacity-70 hover:opacity-100 hover:border-secondary'
+                  }`}
+                  title={`Foto ${idx + 1}`}
+                >
+                  <img
+                    src={imgUrl}
+                    alt={`Vista ${idx + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </button>
+              ))}
+
+              {/* 3D Model thumbnail at the end */}
+              {product.model3d && (
+                <button
+                  type="button"
+                  onClick={() => setSelectedView('3d')}
+                  className={`relative w-12 h-12 rounded-xl border-2 flex flex-col items-center justify-center transition-all bg-surface-container-high ${
+                    selectedView === '3d'
+                      ? 'border-secondary bg-secondary-fixed shadow-[2px_2px_0px_#ffbe08] scale-105'
+                      : 'border-[#001f25]/40 opacity-70 hover:opacity-100 hover:border-secondary'
+                  }`}
+                  title="Ver e interactuar con el modelo 3D en 360°"
+                >
+                  <span className="material-symbols-outlined text-lg text-secondary">view_in_ar</span>
+                  <span className="text-[9px] font-bold text-on-surface leading-none mt-0.5">3D</span>
+                  <span className="absolute -top-1 -right-1 bg-[#ff3640] text-white text-[7px] font-bold px-1 rounded-full border border-white">
+                    360°
+                  </span>
+                </button>
+              )}
+            </div>
 
             {/* Quick specs pill */}
             <div className="mt-4 flex flex-wrap gap-2 justify-center text-xs font-bold text-on-surface">
@@ -174,6 +217,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
               {/* Quantity */}
               <div className="flex items-center gap-2 bg-surface-container-lowest rounded-full border-2 border-[#001f25] px-3 py-1.5 shadow-[2px_2px_0px_#ffdcc5]">
                 <button
+                  type="button"
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
                   className="w-6 h-6 flex items-center justify-center font-bold text-base hover:text-secondary"
                 >
@@ -181,6 +225,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                 </button>
                 <span className="font-bold text-sm min-w-5 text-center">{quantity}</span>
                 <button
+                  type="button"
                   onClick={() => setQuantity(quantity + 1)}
                   className="w-6 h-6 flex items-center justify-center font-bold text-base hover:text-secondary"
                 >
@@ -190,6 +235,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
 
               {/* Add button */}
               <button
+                type="button"
                 onClick={handleAddToCart}
                 disabled={addedAnimation}
                 className="w-full flex-1 py-3 px-6 rounded-full bg-secondary-container text-white font-headline font-bold text-sm shadow-[4px_4px_0px_#ffbe08] hover:bg-secondary active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#ffbe08] transition-all flex items-center justify-center gap-2"
@@ -210,4 +256,3 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
     </div>
   );
 };
-

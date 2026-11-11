@@ -12,10 +12,10 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ onExploreClick, onCorporateC
         <div className="relative bg-secondary-fixed rounded-[32px_16px_36px_18px] p-8 md:p-14 shadow-[6px_6px_0px_#ffbe08] border-4 border-[#001f25] overflow-hidden">
           {/* Subtle Caribbean pattern from user's assets */}
           <div
-            className="absolute inset-0 opacity-15 pointer-events-none mix-blend-multiply bg-repeat"
+            className="absolute inset-0 opacity-25 pointer-events-none mix-blend-multiply bg-repeat bg-center"
             style={{
               backgroundImage: `url('/recurso-3.svg')`,
-              backgroundSize: '280px',
+              backgroundSize: '650px',
             }}
           />
 

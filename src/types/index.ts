@@ -12,6 +12,7 @@ export interface Product {
   longDescription: string;
   image: string;
   gallery?: string[];
+  model3d?: string;
   badge?: string;
   badgeColor?: string;
   rating: number;
