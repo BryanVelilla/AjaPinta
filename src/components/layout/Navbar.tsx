@@ -54,11 +54,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
   return (
     <header
-      className={`fixed top-0 w-full z-40 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-surface/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,31,37,0.06)] border-b border-surface-container-high'
-          : 'bg-surface/90 backdrop-blur-sm'
-      }`}
+      className={`fixed top-0 w-full z-40 transition-all duration-300 ${isScrolled
+        ? 'bg-surface/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,31,37,0.06)] border-b border-surface-container-high'
+        : 'bg-surface/90 backdrop-blur-sm'
+        }`}
     >
       <div className="h-20 max-w-[1280px] mx-auto px-margin flex items-center justify-between gap-space-md">
         {/* Brand / Logo */}
@@ -84,42 +83,37 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
         <nav className="hidden md:flex items-center gap-1.5 bg-surface-container-lowest px-2 py-1.5 rounded-full shadow-[2px_2px_0px_#ffdcc5] border border-outline-variant/40">
           <button
             onClick={() => scrollToSection('inicio')}
-            className={`px-4 py-1.5 text-sm font-bold rounded-full transition-all ${
-              activeSection === 'inicio'
-                ? 'bg-secondary-container text-white shadow-[2px_2px_0px_#ffbe08]'
-                : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low'
-            }`}
+            className={`px-4 py-1.5 text-sm font-bold rounded-full transition-all ${activeSection === 'inicio'
+              ? 'bg-secondary-container text-white shadow-[2px_2px_0px_#ffbe08]'
+              : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low'
+              }`}
           >
             Inicio
           </button>
           <button
             onClick={() => scrollToSection('tienda')}
-            className={`px-4 py-1.5 text-sm font-bold rounded-full transition-all ${
-              activeSection === 'tienda'
-                ? 'bg-secondary-container text-white shadow-[2px_2px_0px_#ffbe08]'
-                : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low'
-            }`}
+            className={`px-4 py-1.5 text-sm font-bold rounded-full transition-all ${activeSection === 'tienda'
+              ? 'bg-secondary-container text-white shadow-[2px_2px_0px_#ffbe08]'
+              : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low'
+              }`}
           >
             Catálogo
           </button>
           <button
             onClick={() => scrollToSection('simulador')}
-            className={`px-4 py-1.5 text-sm font-bold rounded-full transition-all flex items-center gap-1 ${
-              activeSection === 'simulador'
-                ? 'bg-tertiary text-white shadow-[2px_2px_0px_#84f5f0]'
-                : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low'
-            }`}
+            className={`px-4 py-1.5 text-sm font-bold rounded-full transition-all flex items-center gap-1 ${activeSection === 'simulador'
+              ? 'bg-tertiary text-white shadow-[2px_2px_0px_#84f5f0]'
+              : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low'
+              }`}
           >
-            <span className="text-xs">🎨</span>
             <span>Simulador</span>
           </button>
           <button
             onClick={() => scrollToSection('esencia')}
-            className={`px-4 py-1.5 text-sm font-bold rounded-full transition-all ${
-              activeSection === 'esencia'
-                ? 'bg-secondary-container text-white shadow-[2px_2px_0px_#ffbe08]'
-                : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low'
-            }`}
+            className={`px-4 py-1.5 text-sm font-bold rounded-full transition-all ${activeSection === 'esencia'
+              ? 'bg-secondary-container text-white shadow-[2px_2px_0px_#ffbe08]'
+              : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low'
+              }`}
           >
             Nuestra esencia
           </button>
@@ -175,36 +169,32 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
           <div className="flex flex-col gap-2">
             <button
               onClick={() => scrollToSection('inicio')}
-              className={`text-left px-4 py-2.5 rounded-xl font-bold flex items-center gap-2 ${
-                activeSection === 'inicio' ? 'bg-secondary-fixed text-secondary' : 'text-on-surface'
-              }`}
+              className={`text-left px-4 py-2.5 rounded-xl font-bold flex items-center gap-2 ${activeSection === 'inicio' ? 'bg-secondary-fixed text-secondary' : 'text-on-surface'
+                }`}
             >
               <span className="material-symbols-outlined">home</span>
               Inicio
             </button>
             <button
               onClick={() => scrollToSection('tienda')}
-              className={`text-left px-4 py-2.5 rounded-xl font-bold flex items-center gap-2 ${
-                activeSection === 'tienda' ? 'bg-secondary-fixed text-secondary' : 'text-on-surface'
-              }`}
+              className={`text-left px-4 py-2.5 rounded-xl font-bold flex items-center gap-2 ${activeSection === 'tienda' ? 'bg-secondary-fixed text-secondary' : 'text-on-surface'
+                }`}
             >
               <span className="material-symbols-outlined">storefront</span>
               Catálogo de Figuras
             </button>
             <button
               onClick={() => scrollToSection('simulador')}
-              className={`text-left px-4 py-2.5 rounded-xl font-bold flex items-center gap-2 ${
-                activeSection === 'simulador' ? 'bg-tertiary-fixed text-tertiary' : 'text-on-surface'
-              }`}
+              className={`text-left px-4 py-2.5 rounded-xl font-bold flex items-center gap-2 ${activeSection === 'simulador' ? 'bg-tertiary-fixed text-tertiary' : 'text-on-surface'
+                }`}
             >
               <span className="material-symbols-outlined">palette</span>
               Simulador de Pintura
             </button>
             <button
               onClick={() => scrollToSection('esencia')}
-              className={`text-left px-4 py-2.5 rounded-xl font-bold flex items-center gap-2 ${
-                activeSection === 'esencia' ? 'bg-secondary-fixed text-secondary' : 'text-on-surface'
-              }`}
+              className={`text-left px-4 py-2.5 rounded-xl font-bold flex items-center gap-2 ${activeSection === 'esencia' ? 'bg-secondary-fixed text-secondary' : 'text-on-surface'
+                }`}
             >
               <span className="material-symbols-outlined">local_florist</span>
               Nuestra Esencia Caribeña
